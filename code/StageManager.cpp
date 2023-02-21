@@ -24,7 +24,7 @@ bool CStageManager::Init()
     if (!CreateStage(ST_HARD)) {
         return false;
     }
-    return false;
+    return true;
 }
 
 void CStageManager::Run()

@@ -28,8 +28,8 @@ T Input() {
 
 template <typename T>
 void Safe_Delete_VecList(T &p) {
-	T::iterator iter;
-	T::iterator iterEnd = p.end();
+	typename T::iterator iter;
+	typename T::iterator iterEnd = p.end();
 
 	for (iter = p.begin(); iter != iterEnd; iter++) {
 		SAFE_DELETE(*iter);
@@ -39,11 +39,33 @@ void Safe_Delete_VecList(T &p) {
 
 template <typename T>
 void Safe_Delete_Map(T& p) {
-	T::iterator iter;
-	T::iterator iterEnd = p.end();
+	typename T::iterator iter;
+	typename T::iterator iterEnd = p.end();
 
 	for (iter = p.begin(); iter != iterEnd; iter++) {
 		SAFE_DELETE(iter->second);		// first: key, second: value
 	}
 	p.clear();
 }
+
+enum JOB {
+	JOB_NONE,
+	JOB_KNIGHT,
+	JOB_ARCHER,
+	JOB_WIZARD,
+	JOB_END
+};
+
+typedef struct _tagCharacterInfo
+{
+	int		iAttackMin;
+	int		iAttackMax;
+	int		iArmorMin;
+	int		iArmorMax;
+	int		iHP;
+	int		iHPMax;
+	int		iMP;
+	int		iMPMax;
+	int		iLevel;
+	int		iExp;
+}CHARACTERINFO, * PCHARACTERINFO;

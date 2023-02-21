@@ -14,6 +14,8 @@ private:
 public:
 	bool Init();
 	CObject* CreateObject(const string& strKey, OBJECT_TYPE eType);
+	CObject* FindObject(const string& strKey);
+	CObject* CloneObject(const string& strKey);
 
 	DECLARE_SINGLE(CObjectManager)
 };
