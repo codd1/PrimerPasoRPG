@@ -57,6 +57,7 @@ enum JOB {
 	JOB_END
 };
 
+// Character Information
 typedef struct _tagCharacterInfo
 {
 	int		iAttackMin;
@@ -70,3 +71,12 @@ typedef struct _tagCharacterInfo
 	int		iLevel;
 	int		iExp;
 }CHARACTERINFO, * PCHARACTERINFO;
+
+// Item Information
+typedef struct _tagItemInfo {
+	ITEM_TYPE eType;
+	string strTypeName;
+	int iPrice;
+	int iSell;
+	string strDesc;		// 아이템 설명
+}ITEMINFO, *PITEMINFO;

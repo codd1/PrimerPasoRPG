@@ -20,6 +20,9 @@ public:
 	void AddGold(int iGold);
 	void DropGold();
 
+	int GetGold() const {
+		return m_iGold;
+	}
 public:
 	virtual bool Init();
 	virtual void Render();

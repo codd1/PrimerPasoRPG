@@ -27,11 +27,11 @@ public:
 	bool Damage(int iDamage);
 	bool AddExp(int iExp);
 	bool CheckLevelUp();
-
 	void DropExp();
 	void FullHPMP();
 public:
 	virtual bool Init();
 	virtual void Render();
+	virtual CCharacter* Clone() = 0;
 };
 
