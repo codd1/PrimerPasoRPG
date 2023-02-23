@@ -16,6 +16,20 @@ public:
 	}
 
 	void SetCharacterInfo(int iAtMin, int iAtMax, int iArMin, int iArMax, int iHP, int iMP, int iLevel, int iExp);
+
+	int GetDamage() {
+		// iAttackMin ~ iAttackMax 사이의 랜덤한 값 리턴
+		return rand() % (m_tInfo.iAttackMax - m_tInfo.iAttackMin + 1) + m_tInfo.iAttackMin;
+	}
+	int GetArmor() {
+		return rand() % (m_tInfo.iArmorMax - m_tInfo.iArmorMin + 1) + m_tInfo.iArmorMin;
+	}
+	bool Damage(int iDamage);
+	bool AddExp(int iExp);
+	bool CheckLevelUp();
+
+	void DropExp();
+	void FullHPMP();
 public:
 	virtual bool Init();
 	virtual void Render();

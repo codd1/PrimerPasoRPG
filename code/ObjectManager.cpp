@@ -23,7 +23,7 @@ bool CObjectManager::Init()
 	// 그런데 몬스터의 기본 변수들은 Monster 클래스나 Character 클래스가 가지고 있으므로 몬스터 클래스로 형변환하여 저장해두고 기능을 사용한다.
 	CMonster* pMonster = (CMonster*)CreateObject("Goblin", OT_MONSTER);
 	pMonster->SetName("고블린");
-	pMonster->SetCharacterInfo(5, 10, 3, 5, 100, 10, 1, 1000);
+	pMonster->SetCharacterInfo(10, 20, 3, 5, 100, 10, 1, 1000);
 	pMonster->SetGold(1000, 2000);
 
 	pMonster = (CMonster*)CreateObject("Troll", OT_MONSTER);
@@ -78,7 +78,7 @@ CObject* CObjectManager::FindObject(const string& strKey) {
 // 인자로 들어오는 키를 이용해서 객체를 찾은 후에 해당 객체를 복사해서 생성한 후 반환해주는 함수
 CObject* CObjectManager::CloneObject(const string& strKey) {
 
-	// 복사할 원본 객체를 찾느다.
+	// 복사할 원본 객체를 찾는다.
 	CObject* pOrigin = FindObject(strKey);
 
 	// 찾지 못했다면
@@ -87,5 +87,5 @@ CObject* CObjectManager::CloneObject(const string& strKey) {
 	}
 
 	// 만약 찾았다면 원본 객체를 복사한 새로운 객체를 만들어서 반환한다.
-	return pOrigin;
+	return pOrigin->Clone();
 }

@@ -24,6 +24,10 @@ public:
 		m_strName = pName;
 	}
 
+	string GetName() const {
+		return m_strName;
+	}
+
 public:
 	virtual bool Init();
 	virtual void Render();

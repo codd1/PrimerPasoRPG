@@ -26,7 +26,7 @@ void CMonster::Render()
 	cout << "이름: " << m_strName << endl;
 	cout << "레벨: " << m_tInfo.iLevel << "\t\t획득 경험치: " << m_tInfo.iExp << endl;
 	cout << "공격력: " << m_tInfo.iAttackMin << " - " << m_tInfo.iAttackMax << "\t방어력: " << m_tInfo.iArmorMin << " - " << m_tInfo.iArmorMax << endl;
-	cout << "체력: " << m_tInfo.iHP << "\t마나: " << m_tInfo.iMP << endl;
+	cout << "체력: " << m_tInfo.iHP << " / " << m_tInfo.iHPMax << "\t마나: " << m_tInfo.iMP << " / " << m_tInfo.iMPMax << endl;
 	cout << "획득 금액: " << m_iGoldMin << " - " << m_iGoldMax << " Gold" << endl << endl;
 }
 
