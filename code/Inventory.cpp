@@ -1,5 +1,7 @@
 #include "Inventory.h"
 #include "Item.h"
+#include "Player.h"
+#include "ObjectManager.h"
 
 DEFINITION_SINGLE(CInventory)
 
@@ -30,11 +32,28 @@ void CInventory::Additem(CItem* pItem)
 
 void CInventory::Run()
 {
-	for (size_t i = 0; i < m_vecItem.size(); i++) {
-		cout << i + 1 << ". ";
-		m_vecItem[i]->Render();
-		cout << endl;
-	}
+	// player를 얻어온다.
+	CPlayer* pPlayer = (CPlayer*)GET_SINGLE(CObjectManager)->FindObject("Player");
 
-	system("pause");
+	while (true) {
+		system("cls");
+		cout << "==================== Inventory ====================" << endl;
+		pPlayer->Render();		// 플레이어 정보 출력
+		cout << endl;
+		for (size_t i = 0; i < m_vecItem.size(); i++) {
+			cout << i + 1 << ". ";
+			m_vecItem[i]->Render();
+			cout << endl;
+		}
+		cout << m_vecItem.size() + 1 << ". 뒤로가기" << endl;
+		cout << "장착할 아이템을 선택하세요: ";
+		int iItem = Input<int>();
+
+		if (iItem<1 || iItem>m_vecItem.size() + 1) {
+			continue;
+		}
+		else if (iItem == m_vecItem.size() + 1) {
+			return;
+		}
+	}
 }

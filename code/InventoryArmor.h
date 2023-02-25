@@ -5,8 +5,10 @@
 class CInventoryArmor :
     public CInventory
 {
-private:
+protected:
     CInventoryArmor();
     ~CInventoryArmor();
+private:
+    friend class CInventory;
 };
 

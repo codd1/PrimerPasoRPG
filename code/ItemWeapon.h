@@ -21,6 +21,17 @@ private:
 	float m_fCritical;
 
 public:
+	int GetAttackMin() const {
+		return m_iAttackMin;
+	}
+	int GetAttackMax() const {
+		return m_iAttackMax;
+	}
+	float GetCritical() const {
+		return m_fCritical;
+	}
+
+public:
 	void SetWeaponInfo(int iAttackMin, int iAttackMax, float fCritical);
 
 public:

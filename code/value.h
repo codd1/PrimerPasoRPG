@@ -49,13 +49,13 @@ void Safe_Delete_Map(T& p) {
 	p.clear();
 }
 
-enum JOB {
-	JOB_NONE,
-	JOB_KNIGHT,
-	JOB_ARCHER,
-	JOB_WIZARD,
-	JOB_END
-};
+//enum JOB {
+//	JOB_NONE,
+//	JOB_KNIGHT,
+//	JOB_ARCHER,
+//	JOB_WIZARD,
+//	JOB_END
+//};
 
 // Character Information
 typedef struct _tagCharacterInfo

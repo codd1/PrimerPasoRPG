@@ -5,6 +5,7 @@
 class CInventoryWeapon :
     public CInventory
 {
+private:
     CInventoryWeapon();
     ~CInventoryWeapon();
 };
