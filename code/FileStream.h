@@ -16,7 +16,7 @@ private:
 	};
 
 private:
-	FILE* m_pFIle;
+	FILE* m_pFile;
 	bool m_bOpen;
 	FILE_MODE m_eMode;
 	int m_iFileSize;
