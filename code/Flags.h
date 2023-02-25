@@ -1,5 +1,13 @@
 #pragma once
 
+enum JOB {
+	JOB_NONE,
+	JOB_KNIGHT,
+	JOB_ARCHER,
+	JOB_WIZARD,
+	JOB_END
+};
+
 // Object Type
 enum OBJECT_TYPE {
 	OT_PLAYER,

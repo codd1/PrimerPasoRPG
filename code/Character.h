@@ -30,6 +30,8 @@ public:
 	bool CheckLevelUp();
 	void DropExp();
 	void FullHPMP();
+	void LevelUp();
+	void AddLevelUpStatus(const LEVELUPINFO& tInfo);
 public:
 	virtual bool Init();
 	virtual void Render();

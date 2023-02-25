@@ -5,7 +5,7 @@ CCharacter::CCharacter()
 }
 
 // Object 복사생성자를 먼저 호출하여 Object의 값을 복사하고 character의 값을 복사한다.
-CCharacter::CCharacter(const CCharacter& character):
+CCharacter::CCharacter(const CCharacter& character) :
 	CObject(character)
 {
 	m_tInfo = character.m_tInfo;
@@ -40,13 +40,17 @@ bool CCharacter::Damage(int iDamage)
 bool CCharacter::AddExp(int iExp)
 {
 	m_tInfo.iExp += iExp;
-	
+
 	// false 리턴 시에는 레벨업 X
 	return false;
 }
 
 bool CCharacter::CheckLevelUp()
 {
+	if (g_iLvUpTable[m_tInfo.iLevel - 1] <= m_tInfo.iExp) {
+		return true;
+	}
+	
 	return false;
 }
 
@@ -59,6 +63,29 @@ void CCharacter::DropExp()
 void CCharacter::FullHPMP()
 {
 	m_tInfo.iHP = m_tInfo.iHPMax;
+	m_tInfo.iMP = m_tInfo.iMPMax;
+}
+
+void CCharacter::LevelUp()
+{
+	// 레벨업테이블에 입력되어있는만큼 경험치 감소
+	m_tInfo.iExp -= g_iLvUpTable[m_tInfo.iLevel - 1];
+
+	// 레벨업
+	m_tInfo.iLevel++;
+}
+
+void CCharacter::AddLevelUpStatus(const LEVELUPINFO& tInfo)
+{
+	m_tInfo.iAttackMin += tInfo.iAttackMin;
+	m_tInfo.iAttackMax += tInfo.iAttackMax;
+	m_tInfo.iArmorMin += tInfo.iArmorMin;
+	m_tInfo.iArmorMax += tInfo.iArmorMax;
+
+	// 레벨업 했으므로 최대 체력, 마나를 바꾸고 체력과 마나를 풀로 채워준다.
+	m_tInfo.iHPMax += tInfo.iHP;
+	m_tInfo.iHP = m_tInfo.iHPMax;
+	m_tInfo.iMPMax += tInfo.iMP;
 	m_tInfo.iMP = m_tInfo.iMPMax;
 }
 

@@ -4,14 +4,6 @@ class CPlayer :
 	public CCharacter
 {
 private:
-	enum JOB {
-		JOB_NONE,
-		JOB_KNIGHT,
-		JOB_ARCHER,
-		JOB_WIZARD,
-		JOB_END
-	};
-
 	enum EQUIP {
 		EQ_WEAPON,
 		EQ_ARMOR,
@@ -33,6 +25,9 @@ private:
 	class CItem* m_pEquip[EQ_END];
 
 public:
+	JOB GetJob() const {
+		return m_eJob;
+	}
 	void AddGold(int iGold);
 	void DropGold();
 
