@@ -7,6 +7,8 @@ CItemArmor::CItemArmor()
 CItemArmor::CItemArmor(const CItemArmor& item) :
 	CItem(item)
 {
+	m_iArmorMin = item.m_iArmorMin;
+	m_iArmorMax = item.m_iArmorMax;
 }
 
 CItemArmor::~CItemArmor()

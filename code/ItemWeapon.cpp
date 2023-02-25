@@ -7,6 +7,9 @@ CItemWeapon::CItemWeapon()
 CItemWeapon::CItemWeapon(const CItemWeapon& item) :
 	CItem(item)
 {
+	m_iAttackMin = item.m_iAttackMin;
+	m_iAttackMax = item.m_iAttackMax;
+	m_fCritical = item.m_fCritical;
 }
 
 CItemWeapon::~CItemWeapon()

@@ -7,6 +7,7 @@ CItem::CItem()
 CItem::CItem(const CItem& item):
 	CObject(item)
 {
+	m_tInfo = item.m_tInfo;
 }
 
 CItem::~CItem()
