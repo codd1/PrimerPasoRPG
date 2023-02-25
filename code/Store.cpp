@@ -42,9 +42,18 @@ CItem* CStore::CreateItem(const char* strName, ITEM_TYPE eType, int iPrice, int 
 
 void CStore::OutputItemList()
 {
-	for (size_t i = 0; i < m_vecItem.size(); i++) {
+	/*for (size_t i = 0; i < m_vecItem.size(); i++) {
 		cout << i + 1 << ". ";
 		m_vecItem[i]->Render();
+		cout << endl;
+	}*/
+
+	// iterator를 이용한 for문 (위에랑 같음)
+	vector<CItem*>::iterator iter;
+	int iCount = 1;
+	for (iter = m_vecItem.begin(); iter != m_vecItem.end(); iter++) {
+		cout << iCount << ". ";
+		(*iter)->Render();
 		cout << endl;
 	}
 }
