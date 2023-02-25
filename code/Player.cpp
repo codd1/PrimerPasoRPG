@@ -46,6 +46,38 @@ void CPlayer::DropGold()
 	m_iGold -= m_iGold * 0.1f;
 }
 
+int CPlayer::GetDamage()
+{
+	int iMin = m_tInfo.iAttackMin;
+	int iMax = m_tInfo.iAttackMax;
+
+	if (m_pEquip[EQ_WEAPON]) {
+		iMin += ((CItemWeapon*)m_pEquip[EQ_WEAPON])->GetAttackMin();
+		iMax += ((CItemWeapon*)m_pEquip[EQ_WEAPON])->GetAttackMax();
+
+		if (rand() % 9901 / 100.f <= ((CItemWeapon*)m_pEquip[EQ_WEAPON])->GetCritical()) {
+			cout << "Critical" << endl;
+			iMin *= 2;
+			iMax *= 2;
+		}
+	}
+
+	// iAttackMin ~ iAttackMax 사이의 랜덤한 값 리턴
+	return rand() % (iMax - iMin + 1) + iMin;
+}
+
+int CPlayer::GetArmor()
+{
+	int iMin = m_tInfo.iArmorMin;
+	int iMax = m_tInfo.iArmorMax;
+
+	if (m_pEquip[EQ_ARMOR]) {
+		iMin += ((CItemArmor*)m_pEquip[EQ_ARMOR])->GetArmorMin();
+		iMax += ((CItemArmor*)m_pEquip[EQ_ARMOR])->GetArmorMax();
+	}
+	return rand() % (iMax - iMin + 1) + iMin;
+}
+
 // 장착하고 있는게 있으면 장착하고 있던 아이템을 리턴, 없으면 NULL 리턴
 class CItem* CPlayer::Equip(CItem* pItem)
 {

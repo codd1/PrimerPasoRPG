@@ -39,6 +39,13 @@ public:
 	int GetGold() const {
 		return m_iGold;
 	}
+	
+	class CItem* GetEquip(EQUIP eq) const {
+		return m_pEquip[eq];
+	}
+
+	virtual int GetDamage();
+	virtual int GetArmor();
 
 public:
 	class CItem* Equip(class CItem* pItem);

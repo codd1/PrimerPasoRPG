@@ -72,6 +72,20 @@ typedef struct _tagCharacterInfo
 	int		iExp;
 }CHARACTERINFO, * PCHARACTERINFO;
 
+typedef struct _tagLevelUpInfo {
+	int iAttackMin;
+	int iAttackMax;
+	int iArmorMin;
+	int iArmorMax;
+	int iHP;
+	int iMP;
+}LEVELUPINFO, *PLEVELUPINFO;
+
+#define MAX_LEVEL 10
+
+// 경험치를 250000 먹어도 10레벨에 멈춰있고 더 이상 오르지 않는다. (사양)
+static int g_iLvUpTable[MAX_LEVEL] = { 4000,10000,20000,35000,52000,72000,90000,130000, 170000,250000 };
+
 // Item Information
 typedef struct _tagItemInfo {
 	ITEM_TYPE eType;
