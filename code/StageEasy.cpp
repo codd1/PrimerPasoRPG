@@ -39,7 +39,6 @@ void CStageEasy::Run()
 			switch (BattleAttack(pPlayer, pMonster)) {
 			case BF_PLAYER_DIE:
 				pPlayer->DropExp();
-				//cout << pPlayer->GetName() << " ÀÌ(°¡) " << pPlayer << "";
 				pPlayer->DropGold();
 				pPlayer->FullHPMP();
 

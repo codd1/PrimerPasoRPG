@@ -55,5 +55,22 @@ void CInventory::Run()
 		else if (iItem == m_vecItem.size() + 1) {
 			return;
 		}
+
+		// iItem은 1번부터 선택하기 때문에 1을 빼줘야한다. (인덱스)
+		CItem* pEquip = pPlayer->Equip(m_vecItem[iItem - 1]);
+
+		if (pEquip) {
+			// 장착 하고있던 아이템이 있을 경우,
+			// 받아와서 선택한 아이템을 장착하고 있던 아이템과 교체해준다.
+			m_vecItem[iItem - 1] = pEquip;
+		}
+		else {
+			// 장착 하고있던 아이템이 없을 경우 해당 아이템 칸을 지워준다.
+			// begin + 인덱스를 해줘서 장착한 아이템의 iterator를 구해준다.
+			vector<CItem*>::iterator iter = m_vecItem.begin() + (iItem - 1);
+
+			// iter를 지우면서 자동으로 한 칸씩 당겨준다.
+			m_vecItem.erase(iter);
+		}
 	}
 }

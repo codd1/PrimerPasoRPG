@@ -8,7 +8,7 @@ protected:
 	CCharacter(const CCharacter& character);
 	virtual ~CCharacter() = 0;
 
-protected:
+public:
 	CHARACTERINFO m_tInfo;
 public:
 	CHARACTERINFO GetCharacterInfo() const {
