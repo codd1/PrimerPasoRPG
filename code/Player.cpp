@@ -108,6 +108,9 @@ class CItem* CPlayer::Equip(CItem* pItem)
 
 bool CPlayer::Init()
 {
+	system("cls");
+	cin.ignore(1024, '\n');
+
 	cout << "이름을 입력하세요: ";
 	char strName[31];
 	cin.getline(strName, 31);

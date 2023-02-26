@@ -2,14 +2,6 @@
 
 #include "value.h"
 
-enum STAGE_TYPE {
-	ST_NONE,
-	ST_EASY,
-	ST_NORMAL,
-	ST_HARD,
-	ST_BACK
-};
-
 class CStageManager
 {
 private:
