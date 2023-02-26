@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "ObjectManager.h"
 #include "Inventory.h"
+#include "FileStream.h"
 
 CStoreWeapon::CStoreWeapon()
 {
@@ -15,14 +16,37 @@ CStoreWeapon::~CStoreWeapon()
 bool CStoreWeapon::Init()
 {
 	// 판매 목록을 만들어준다.
-	CItemWeapon* pItem = (CItemWeapon*)CreateItem("목검", IT_WEAPON, 1000, 500, "나무로 만든 검");
+	/*CItemWeapon* pItem = (CItemWeapon*)CreateItem("목검", IT_WEAPON, 1000, 500, "나무로 만든 검");
 	pItem->SetWeaponInfo(5, 10, 10.f);
 
 	pItem = (CItemWeapon*)CreateItem("철검", IT_WEAPON, 3000, 1500, "철로 만든 검");
 	pItem->SetWeaponInfo(20, 30, 20.f);
 
 	pItem = (CItemWeapon*)CreateItem("그림자 검", IT_WEAPON, 25000, 12500, "방관 꿀템");
-	pItem->SetWeaponInfo(70, 100, 35.f);
+	pItem->SetWeaponInfo(70, 100, 35.f);*/
+
+	CFileStream file("StoreWeapon.swp", "rb");
+
+	if (file.GetOpen()) {
+		size_t iCount = 0;
+
+		file.Read(&iCount, 4);
+
+		for (size_t i = 0; i < iCount; i++) {
+
+			CItem* pItem = new CItemWeapon;
+
+			if (!pItem->Init()) {
+				SAFE_DELETE(pItem);
+				return false;
+			}
+			pItem->Load(&file);
+
+			m_vecItem.push_back(pItem);
+		}
+
+		file.Close();
+	}
 
 	return true;
 }

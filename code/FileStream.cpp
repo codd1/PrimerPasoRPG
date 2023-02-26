@@ -79,7 +79,7 @@ bool CFileStream::ReadLine(void* pData, int* pSize)
 	vector<char> vec;
 	vec.reserve(128);		// 예약공간
 
-	while (feof(m_pFile)==0) {		// feof가 0일 때는 파일의 끝이 아니다.
+	while (feof(m_pFile) == 0) {		// feof가 0일 때는 파일의 끝이 아니다.
 		fread(&cBuffer, 1, 1, m_pFile);
 
 		// 한 문장씩 읽는 것이므로 '\n'을 만나면 반복문 종료

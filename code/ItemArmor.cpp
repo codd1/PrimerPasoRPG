@@ -1,4 +1,5 @@
 #include "ItemArmor.h"
+#include "FileStream.h"
 
 CItemArmor::CItemArmor()
 {
@@ -37,4 +38,20 @@ void CItemArmor::Render()
 CItemArmor* CItemArmor::Clone()
 {
 	return new CItemArmor(*this);
+}
+
+void CItemArmor::Save(CFileStream* pFile)
+{
+	CItem::Save(pFile);
+
+	pFile->Write(&m_iArmorMin, 4);
+	pFile->Write(&m_iArmorMax, 4);
+}
+
+void CItemArmor::Load(CFileStream* pFile)
+{
+	CItem::Load(pFile);
+
+	pFile->Read(&m_iArmorMin, 4);
+	pFile->Read(&m_iArmorMax, 4);
 }

@@ -15,6 +15,7 @@ private:
 
 protected:
 	ITEMINFO m_tInfo;
+	friend class CEditorItem;
 
 public:
 	void SetItemInfo(ITEM_TYPE eType, int iPrice, int iSell, const char* pDesc);
@@ -26,5 +27,7 @@ public:
 	virtual bool Init();
 	virtual void Render();
 	virtual CItem* Clone() = 0;
+	virtual void Save(class CFileStream* pFile);
+	virtual void Load(class CFileStream* pFile);
 };
 

@@ -14,6 +14,7 @@ private:
 	// friend class = 나(CItemWeapon)는 CStore의 친구니까 private여도 멤버에 접근 가능해
 	friend class CStore;
 	friend class CStoreWeapon;
+	friend class CEditorItem;
 
 private:
 	int m_iAttackMin;
@@ -38,5 +39,7 @@ public:
 	virtual bool Init();
 	virtual void Render();
 	virtual CItemWeapon* Clone();
+	virtual void Save(class CFileStream* pFile);
+	virtual void Load(class CFileStream* pFile);
 };
 
