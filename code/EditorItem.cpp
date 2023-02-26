@@ -115,7 +115,7 @@ void CEditorItem::InsertItem()
 	int iPrice, iSell;
 	cout << "구매가: ";
 	cin >> iPrice;
-	cout << "판매가:";
+	cout << "판매가: ";
 	cin >> iSell;
 
 	switch (iItemType - 1) {
