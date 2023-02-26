@@ -28,33 +28,33 @@ int main() {
 		else if (iGameMode == GM_EXIT) {
 			return 0;
 		}
-		break;
-	}
+		//break;
 
-	switch (iGameMode) {
-	case GM_INGAME:
-		if (!GET_SINGLE(CCore)->Init()) {
+		switch (iGameMode) {
+		case GM_INGAME:
+			if (!GET_SINGLE(CCore)->Init()) {
+				DESTROY_SINGLE(CCore);
+				return 0;
+			}
+
+			GET_SINGLE(CCore)->Run();
+
 			DESTROY_SINGLE(CCore);
-			return 0;
+
+			break;
+
+		case GM_EDIT:
+			if (!GET_SINGLE(CEditorCore)->Init()) {
+				DESTROY_SINGLE(CCore);
+				return 0;
+			}
+
+			GET_SINGLE(CEditorCore)->Run();
+
+			DESTROY_SINGLE(CEditorCore);
+
+			break;
 		}
-
-		GET_SINGLE(CCore)->Run();
-
-		DESTROY_SINGLE(CCore);
-
-		break;
-
-	case GM_EDIT:
-		if (!GET_SINGLE(CEditorCore)->Init()) {
-			DESTROY_SINGLE(CCore);
-			return 0;
-		}
-
-		GET_SINGLE(CEditorCore)->Run();
-
-		DESTROY_SINGLE(CEditorCore);
-
-		break;
 	}
 
 	return 0;
