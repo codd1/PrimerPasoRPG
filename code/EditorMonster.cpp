@@ -94,7 +94,7 @@ void CEditorMonster::InsertMonster()
 	int iAttackMin, iAttackMax, iArmorMin, iArmorMax, iHP, iMP, iLevel, iExp;
 	cout << "최소 공격력: ";
 	cin >> iAttackMin;
-	cout << "최대 공격력:";
+	cout << "최대 공격력: ";
 	cin >> iAttackMax;
 	cout << "최소 방어력: ";
 	cin >> iArmorMin;
