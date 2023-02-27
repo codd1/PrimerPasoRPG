@@ -8,7 +8,7 @@ enum EDIT_MENU {
 	EM_NONE,
 	EM_MONSTER,
 	EM_ITEM,
-	EM_EXIT
+	EM_BACK
 };
 
 CEditorCore::CEditorCore()
@@ -44,7 +44,7 @@ void CEditorCore::Run()
 		case EM_ITEM:
 			GET_SINGLE(CEditorItem)->Run();
 			break;
-		case EM_EXIT:
+		case EM_BACK:
 			return;
 		}
 
@@ -56,11 +56,11 @@ int CEditorCore::OutputMenu()
 	system("cls");
 	cout << "1. 몬스터 설정" << endl;
 	cout << "2. 아이템 설정" << endl;
-	cout << "3. 종료" << endl;
+	cout << "3. 뒤로가기" << endl;
 	cout << "메뉴를 선택하세요: ";
 	int iMenu = Input<int>();
 
-	if (iMenu <= EM_NONE || iMenu > EM_EXIT) {
+	if (iMenu <= EM_NONE || iMenu > EM_BACK) {
 		return EM_NONE;
 	}
 

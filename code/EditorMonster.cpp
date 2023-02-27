@@ -86,9 +86,11 @@ void CEditorMonster::InsertMonster()
 
 	system("cls");
 	cout << "=================== 몬스터 추가 ===================" << endl;
+	cin.ignore(1024, '\n');
 	cout << "이름: ";
 	char strName[256] = {};
-	cin >> strName;
+	cin.getline(strName, 255);
+
 	pMonster->SetName(strName);
 
 	int iAttackMin, iAttackMax, iArmorMin, iArmorMax, iHP, iMP, iLevel, iExp;

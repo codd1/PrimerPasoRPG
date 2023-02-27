@@ -3,6 +3,7 @@
 #include "ObjectManager.h"
 #include "StoreManager.h"
 #include "Inventory.h"
+#include "Object.h"
 
 DEFINITION_SINGLE(CCore)
 
@@ -72,6 +73,11 @@ void CCore::Run()
 			GET_SINGLE(CInventory)->Run();
 			break;
 		case MM_INFORMATION:
+			system("cls");
+			cout << "======================= Player Á¤º¸ =======================" << endl;
+			GET_SINGLE(CObjectManager)->FindObject("Player")->Render();
+			cout << endl;
+			system("pause");
 			break;
 		case MM_EXIT:
 			return;
