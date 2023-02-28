@@ -13,6 +13,7 @@ public:
 private:
 	int OutputMenu();
 	void InsertMonster();
+	void ModifyMonster();
 	void OutputMonsterList();
 	void SaveMonster();
 	void LoadMonster();

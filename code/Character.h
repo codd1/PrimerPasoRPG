@@ -10,6 +10,16 @@ protected:
 
 public:
 	CHARACTERINFO m_tInfo;
+
+public:
+	void SetAttackMin(int iAttackMin);
+	void SetAttackMax(int iAttackMax);
+	void SetArmorMin(int iArmorMin);
+	void SetArmorMax(int iArmorMax);
+	void SetHP(int iHP);
+	void SetMP(int iMP);
+	void SetLevel(int iLevel);
+	void SetExp(int iExp);
 public:
 	CHARACTERINFO GetCharacterInfo() const {
 		return m_tInfo;

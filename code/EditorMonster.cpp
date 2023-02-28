@@ -15,6 +15,22 @@ enum EDIT_MONSTER_MENU {
 	EMM_BACK
 };
 
+enum MODIFY_MONSTER_MENU {
+	MMM_NONE,
+	MMM_NAME,
+	MMM_STAGETYPE,
+	MMM_ATTACKMIN,
+	MMM_ATTACKMAX,
+	MMM_ARMORMIN,
+	MMM_ARMORMAX,
+	MMM_HP,
+	MMM_MP,
+	MMM_GOLD,
+	MMM_LEVEL,
+	MMM_EXP,
+	MMM_BACK
+};
+
 CEditorMonster::CEditorMonster()
 {
 }
@@ -37,11 +53,13 @@ void CEditorMonster::Run()
 			InsertMonster();
 			break;
 		case EMM_MODIFY:
+			ModifyMonster();
 			break;
 		case EMM_DELETE:
 			break;
 		case EMM_OUTPUT:
 			OutputMonsterList();
+			system("pause");
 			break;
 		case EMM_SAVE:
 			SaveMonster();
@@ -136,6 +154,131 @@ void CEditorMonster::InsertMonster()
 	m_vecMonster.push_back(pMonster);
 }
 
+void CEditorMonster::ModifyMonster()
+{
+	system("cls");
+	cout << "=================== 몬스터 목록 ===================" << endl;
+
+	// 몬스터 목록에 몬스터가 없을 경우
+	if (m_vecMonster.size() == 0) {
+		cout << endl << "수정 가능한 몬스터가 없습니다." << endl;
+		system("pause");
+		return;
+	}
+
+	OutputMonsterList();
+	cout << m_vecMonster.size() + 1 << ". 뒤로가기" << endl;
+
+	int iChooseMonster;
+
+	while (true) {
+		cout << "수정하려는 몬스터를 선택하세요: ";
+		iChooseMonster = Input<int>();
+
+		// 뒤로가기 선택
+		if (iChooseMonster == m_vecMonster.size() + 1) {
+			return;
+		}
+		else if (iChooseMonster >= 1 && iChooseMonster <= m_vecMonster.size()) {
+			break;
+		}
+	}
+
+	while (true) {
+
+		cout << endl << endl;
+		cout << "1. 이름\t\t2. 난이도" << endl;
+		cout << "3. 최소 공격력\t4. 최대 공격력" << endl;
+		cout << "5. 최소 방어력\t6. 최대 방어력" << endl;
+		cout << "7. HP\t\t8. MP" << endl;
+		cout << "9. 처치 시 획득 골드" << endl;
+		cout << "10. 레벨\t11. 경험치" << endl;
+		cout << "12. 뒤로가기" << endl;
+		cout << "수정할 항목을 입력하세요: ";
+		// 수정할 항목을 입력 받고, 기존 정보 지운 후 새로운 정보 새로 입력
+		int iModifyMenu = Input<int>();
+
+		// 몬스터 정보: iAttackMin, iAttackMax, iArmorMin, iArmorMax, iHP, iMP, iLevel, iExp; iGoldMin, iGoldMax;
+		if (iModifyMenu <= MMM_NONE || iModifyMenu > MMM_BACK) {
+			continue;
+		}
+		int iInput;
+		char strName[256] = {};
+		int iGoldMin, iGoldMax;
+
+		cout << endl;
+		switch (iModifyMenu) {
+		case MMM_NAME:
+			cout << "이름: ";
+
+			cin.ignore(1024, '\n');
+			cin.getline(strName, 255);
+
+			m_vecMonster[iChooseMonster - 1]->SetName(strName);
+
+			break;
+		case MMM_STAGETYPE:
+			cout << endl;
+			cout << "======== 난이도 선택 ========" << endl;
+			cout << "1. Easy / 2. Normal / 3. Hard" << endl;
+			cout << "난이도: ";
+			iInput = Input<int>();
+
+			m_vecMonster[iChooseMonster - 1]->SetStageType((STAGE_TYPE)iInput);
+			break;
+		case MMM_ATTACKMIN:
+			cout << "최소 공격력: ";
+			iInput = Input<int>();
+			m_vecMonster[iChooseMonster - 1]->SetAttackMin(iInput);
+			break;
+		case MMM_ATTACKMAX:
+			cout << "최대 공격력: ";
+			iInput = Input<int>();
+			m_vecMonster[iChooseMonster - 1]->SetAttackMax(iInput);
+			break;
+		case MMM_ARMORMIN:
+			cout << "최소 방어력: ";
+			iInput = Input<int>();
+			m_vecMonster[iChooseMonster - 1]->SetArmorMin(iInput);
+			break;
+		case MMM_ARMORMAX:
+			cout << "최대 방어력: ";
+			iInput = Input<int>();
+			m_vecMonster[iChooseMonster - 1]->SetArmorMax(iInput);
+			break;
+		case MMM_HP:
+			cout << "HP: ";
+			iInput = Input<int>();
+			m_vecMonster[iChooseMonster - 1]->SetHP(iInput);
+			break;
+		case MMM_MP:
+			cout << "MP: ";
+			iInput = Input<int>();
+			m_vecMonster[iChooseMonster - 1]->SetMP(iInput);
+			break;
+		case MMM_GOLD:
+			cout << "최소 획득 골드: ";
+			iGoldMin = Input<int>();
+			cout << "최대 획득 골드: ";
+			iGoldMax = Input<int>();
+			m_vecMonster[iChooseMonster - 1]->SetGold(iGoldMin, iGoldMax);
+			break;
+		case MMM_LEVEL:
+			cout << "레벨: ";
+			iInput = Input<int>();
+			m_vecMonster[iChooseMonster - 1]->SetLevel(iInput);
+			break;
+		case MMM_EXP:
+			cout << "획득 경험치: ";
+			iInput = Input<int>();
+			m_vecMonster[iChooseMonster - 1]->SetExp(iInput);
+			break;
+		case MMM_BACK:
+			return;
+		}
+	}
+}
+
 void CEditorMonster::OutputMonsterList()
 {
 	system("cls");
@@ -147,7 +290,6 @@ void CEditorMonster::OutputMonsterList()
 		cout << endl;
 	}
 
-	system("pause");
 }
 
 void CEditorMonster::SaveMonster()

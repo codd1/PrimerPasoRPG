@@ -16,6 +16,46 @@ CCharacter::~CCharacter()
 {
 }
 
+void CCharacter::SetAttackMin(int iAttackMin)
+{
+	m_tInfo.iAttackMin;
+}
+
+void CCharacter::SetAttackMax(int iAttackMax)
+{
+	m_tInfo.iAttackMax;
+}
+
+void CCharacter::SetArmorMin(int iArmorMin)
+{
+	m_tInfo.iArmorMin;
+}
+
+void CCharacter::SetArmorMax(int iArmorMax)
+{
+	m_tInfo.iArmorMax;
+}
+
+void CCharacter::SetHP(int iHP)
+{
+	m_tInfo.iHP;
+}
+
+void CCharacter::SetMP(int iMP)
+{
+	m_tInfo.iMP;
+}
+
+void CCharacter::SetLevel(int iLevel)
+{
+	m_tInfo.iLevel;
+}
+
+void CCharacter::SetExp(int iExp)
+{
+	m_tInfo.iExp;
+}
+
 void CCharacter::SetCharacterInfo(int iAtMin, int iAtMax, int iArMin, int iArMax, int iHP, int iMP, int iLevel, int iExp)
 {
 	m_tInfo.iAttackMin = iAtMin;
@@ -29,6 +69,7 @@ void CCharacter::SetCharacterInfo(int iAtMin, int iAtMax, int iArMin, int iArMax
 	m_tInfo.iLevel = iLevel;
 	m_tInfo.iExp = iExp;
 }
+
 
 bool CCharacter::Damage(int iDamage)
 {
