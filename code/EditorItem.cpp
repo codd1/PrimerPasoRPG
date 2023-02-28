@@ -16,6 +16,31 @@ enum EDIT_ITEM_MENU {
 	EIM_BACK
 };
 
+enum MODIFY_WEAPON_MENU {
+	MWM_NONE,
+	MWM_NAME,
+	MWM_ITEMTYPE,
+	MWM_ATTACKMIN,
+	MWM_ATTACKMAX,
+	MWM_CRITICAL,
+	MWM_PRICE,
+	MWM_SELL,
+	MWM_DESC,
+	MWM_BACK
+};
+
+enum MODIFY_ARMOR_MENU {
+	MAM_NONE,
+	MAM_NAME,
+	MAM_ITEMTYPE,
+	MAM_ARMORMIN,
+	MAM_ARMORMAX,
+	MAM_PRICE,
+	MAM_SELL,
+	MAM_DESC,
+	MAM_BACK
+};
+
 CEditorItem::CEditorItem()
 {
 }
@@ -39,6 +64,7 @@ void CEditorItem::Run()
 			InsertItem();
 			break;
 		case EIM_MODIFY:
+			ModifyItem();
 			break;
 		case EIM_DELETE:
 			break;
@@ -167,22 +193,235 @@ void CEditorItem::InsertItem()
 	}
 }
 
-void CEditorItem::OutputItemList()
+void CEditorItem::ModifyItem()
 {
+	CItem* pItem = NULL;
+
 	system("cls");
+	cout << "=================== 아이템 수정 ===================" << endl;
+	int iItemType = 0;
+	while (iItemType <= 0 || iItemType > IT_MAX) {
+		cout << "1. 무기" << endl;
+		cout << "2. 방어구" << endl;
+		cout << "아이템 종류를 선택하세요: ";
+		iItemType = Input<int>();
+	}
+	switch (iItemType - 1) {
+	case IT_WEAPON:
+		pItem = new CItemWeapon;
+		break;
+	case IT_ARMOR:
+		pItem = new CItemArmor;
+		break;
+	}
+
+	if (!pItem->Init()) {
+		SAFE_DELETE(pItem);
+		return;
+	}
+
+	int iChooseItem;
+	char strName[256] = {};
+	int iAttackMin, iAttackMax, iArmorMin, iArmorMax;;
+	float fCritical;
+	int iPrice, iSell;
+	char strDesc[512] = {};
+
+	switch (iItemType - 1) {
+	case IT_WEAPON:
+		OutputWeaponList();
+
+		while (true) {
+			cout << "수정하려는 아이템을 선택하세요: ";
+			iChooseItem = Input<int>();
+
+			// 뒤로가기 선택
+			if (iChooseItem == m_vecWeapon.size() + 1) {
+				return;
+			}
+			else if (iChooseItem >= 1 && iChooseItem <= m_vecWeapon.size()) {
+				break;
+			}
+		}
+
+		while (true) {
+			cout << endl << endl;
+			cout << "1. 이름\t\t2. 종류(무기↔방어구)" << endl;
+			cout << "3. 최소 공격력\t4. 최대 공격력\t5. 치명타율" << endl;
+			cout << "6. 구매가\t7. 판매가\t8. 아이템 설명" << endl;
+			cout << "9. 뒤로가기" << endl;
+			cout << "수정할 항목을 입력하세요: ";
+
+			int iModifyMenu = Input<int>();
+
+			if (iModifyMenu <= MWM_NONE || iModifyMenu > MWM_BACK) {
+				continue;
+			}
+
+			switch (iModifyMenu) {
+			case MWM_NAME:
+				cout << "이름: ";
+
+				cin.ignore(1024, '\n');
+				cin.getline(strName, 255);
+
+				m_vecWeapon[iChooseItem - 1]->SetName(strName);
+				break;
+			case MWM_ITEMTYPE:
+				m_vecWeapon[iChooseItem - 1]->SetItemType(IT_ARMOR);
+				cout << "아이템 종류가 '방어구'로 변경되었습니다. (아이템 정보는 수정 불가)" << endl;
+				m_vecArmor.push_back(m_vecWeapon[iChooseItem - 1]);
+				m_vecWeapon.erase(m_vecWeapon.begin() + (iChooseItem - 1));
+				break;
+			case MWM_ATTACKMIN:
+				cout << "최소 공격력: ";
+				cin >> iAttackMin;
+				((CItemWeapon*)m_vecWeapon[iChooseItem - 1])->SetAttackMin(iAttackMin);
+				break;
+			case MWM_ATTACKMAX:
+				cout << "최대 공격력: ";
+				cin >> iAttackMax;
+				((CItemWeapon*)m_vecWeapon[iChooseItem - 1])->SetAttackMax(iAttackMax);
+				break;
+			case MWM_CRITICAL:
+				cout << "치명타: ";
+				cin >> fCritical;
+				((CItemWeapon*)m_vecWeapon[iChooseItem - 1])->SetCritical(fCritical);
+				break;
+			case MWM_PRICE:
+				cout << "구매가: ";
+				cin >> iPrice;
+				m_vecWeapon[iChooseItem - 1]->SetPrice(iPrice);
+				break;
+			case MWM_SELL:
+				cout << "판매가: ";
+				cin >> iSell;
+				m_vecWeapon[iChooseItem - 1]->SetSell(iSell);
+				break;
+			case MWM_DESC:
+				cout << "아이템 설명: ";
+				cin.ignore(1024, '\n');
+				cin.getline(strDesc, 255);
+				m_vecWeapon[iChooseItem - 1]->SetDesc(strDesc);
+				break;
+			case MWM_BACK:
+				return;
+			}
+		}
+
+	case IT_ARMOR:
+		OutputArmorList();
+
+		while (true) {
+			cout << "수정하려는 아이템을 선택하세요: ";
+			iChooseItem = Input<int>();
+
+			// 뒤로가기 선택
+			if (iChooseItem == m_vecArmor.size() + 1) {
+				return;
+			}
+			else if (iChooseItem >= 1 && iChooseItem <= m_vecArmor.size()) {
+				break;
+			}
+		}
+
+		while (true) {
+			cout << endl << endl;
+			cout << "1. 이름\t\t2. 종류(무기↔방어구)" << endl;
+			cout << "3. 최소 방어력\t4. 최대 방어력" << endl;
+			cout << "5. 구매가\t6. 판매가\t7. 아이템 설명" << endl;
+			cout << "8. 뒤로가기" << endl;
+			cout << "수정할 항목을 입력하세요: ";
+
+			int iModifyMenu = Input<int>();
+
+			if (iModifyMenu <= MAM_NONE || iModifyMenu > MAM_BACK) {
+				continue;
+			}
+
+			switch (iModifyMenu) {
+			case MAM_NAME:
+				cout << "이름: ";
+
+				cin.ignore(1024, '\n');
+				cin.getline(strName, 255);
+
+				m_vecArmor[iChooseItem - 1]->SetName(strName);
+				break;
+			case MAM_ITEMTYPE:
+				m_vecArmor[iChooseItem - 1]->SetItemType(IT_WEAPON);
+				cout << "아이템 종류가 '무기'로 변경되었습니다. (아이템 정보는 수정 불가)" << endl;
+				m_vecWeapon.push_back(m_vecArmor[iChooseItem - 1]);
+				m_vecArmor.erase(m_vecArmor.begin() + (iChooseItem - 1));
+				/*cout << "최소 공격력: ";
+				cin >> iAttackMin;
+				((CItemWeapon*)m_vecWeapon[m_vecWeapon.size() - 1])->SetAttackMin(iAttackMin);
+				cout << "최대 공격력: ";
+				cin >> iAttackMax;
+				((CItemWeapon*)m_vecWeapon[m_vecWeapon.size() - 1])->SetAttackMax(iAttackMax);
+				cout << "치명타: ";
+				cin >> fCritical;
+				((CItemWeapon*)m_vecWeapon[m_vecWeapon.size() - 1])->SetCritical(fCritical);*/
+				break;
+			case MAM_ARMORMIN:
+				cout << "최소 방어력: ";
+				cin >> iArmorMin;
+				((CItemArmor*)m_vecArmor[iChooseItem - 1])->SetArmorMin(iArmorMin);
+				break;
+			case MAM_ARMORMAX:
+				cout << "최대 방어력: ";
+				cin >> iArmorMax;
+				((CItemArmor*)m_vecArmor[iChooseItem - 1])->SetArmorMax(iArmorMax);
+				break;
+			case MAM_PRICE:
+				cout << "구매가: ";
+				cin >> iPrice;
+				m_vecArmor[iChooseItem - 1]->SetPrice(iPrice);
+				break;
+			case MAM_SELL:
+				cout << "판매가: ";
+				cin >> iSell;
+				m_vecArmor[iChooseItem - 1]->SetSell(iSell);
+				break;
+			case MAM_DESC:
+				cout << "아이템 설명: ";
+				cin.ignore(1024, '\n');
+				cin.getline(strDesc, 255);
+				m_vecArmor[iChooseItem - 1]->SetDesc(strDesc);
+				break;
+			case MAM_BACK:
+				return;
+			}
+		}
+	}
+}
+
+void CEditorItem::OutputWeaponList()
+{
 	cout << "================== 무기 상점 ==================" << endl;
 	for (size_t i = 0; i < m_vecWeapon.size(); i++) {
 		cout << i + 1 << ". ";
 		m_vecWeapon[i]->Render();
 		cout << endl;
 	}
+}
 
+void CEditorItem::OutputArmorList()
+{
 	cout << "================== 방어구 상점 ==================" << endl;
 	for (size_t i = 0; i < m_vecArmor.size(); i++) {
 		cout << i + 1 << ". ";
 		m_vecArmor[i]->Render();
 		cout << endl;
 	}
+}
+
+void CEditorItem::OutputItemList()
+{
+	system("cls");
+
+	OutputWeaponList();
+	OutputArmorList();
 
 	system("pause");
 }
@@ -190,7 +429,7 @@ void CEditorItem::OutputItemList()
 void CEditorItem::SaveItem()
 {
 	CFileStream file("StoreWeapon.swp", "wb");
-	
+
 	// 무기 상점 저장
 	if (file.GetOpen()) {
 		size_t iCount = m_vecWeapon.size();

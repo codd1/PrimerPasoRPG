@@ -22,6 +22,16 @@ void CItemArmor::SetArmorInfo(int iArmorMin, int iArmorMax)
 	m_iArmorMin = iArmorMin;
 }
 
+void CItemArmor::SetArmorMin(int iArmorMin)
+{
+	m_iArmorMin = iArmorMin;
+}
+
+void CItemArmor::SetArmorMax(int iArmorMax)
+{
+	m_iArmorMax = iArmorMax;
+}
+
 bool CItemArmor::Init()
 {
 	return true;

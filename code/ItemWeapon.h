@@ -34,6 +34,9 @@ public:
 
 public:
 	void SetWeaponInfo(int iAttackMin, int iAttackMax, float fCritical);
+	void SetAttackMin(int iAttackMin);
+	void SetAttackMax(int iAttackMax);
+	void SetCritical(float fCritical);
 
 public:
 	virtual bool Init();

@@ -29,6 +29,8 @@ public:
 
 public:
 	void SetArmorInfo(int iArmorMin, int iArmorMax);
+	void SetArmorMin(int iArmorMin);
+	void SetArmorMax(int iArmorMax);
 
 public:
 	virtual bool Init();

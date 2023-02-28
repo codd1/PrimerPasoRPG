@@ -33,6 +33,35 @@ void CItem::SetItemInfo(ITEM_TYPE eType, int iPrice, int iSell, const char* pDes
 	m_tInfo.strDesc = pDesc;
 }
 
+void CItem::SetItemType(ITEM_TYPE eType)
+{
+	m_tInfo.eType = eType;
+
+	switch (eType) {
+	case IT_WEAPON:
+		m_tInfo.strTypeName = "무기";
+		break;
+	case IT_ARMOR:
+		m_tInfo.strTypeName = "방어구";
+		break;
+	}
+}
+
+void CItem::SetPrice(int iPrice)
+{
+	m_tInfo.iPrice = iPrice;
+}
+
+void CItem::SetSell(int iSell)
+{
+	m_tInfo.iSell = iSell;
+}
+
+void CItem::SetDesc(const char* pDesc)
+{
+	m_tInfo.strDesc = pDesc;
+}
+
 bool CItem::Init()
 {
 	return true;

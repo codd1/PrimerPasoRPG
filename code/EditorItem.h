@@ -16,6 +16,9 @@ public:
 private:
 	int OutputMenu();
 	void InsertItem();
+	void ModifyItem();
+	void OutputWeaponList();
+	void OutputArmorList();
 	void OutputItemList();
 	void SaveItem();
 	void LoadItem();

@@ -19,6 +19,10 @@ protected:
 
 public:
 	void SetItemInfo(ITEM_TYPE eType, int iPrice, int iSell, const char* pDesc);
+	void SetItemType(ITEM_TYPE eType);
+	void SetPrice(int iPrice);
+	void SetSell(int iSell);
+	void SetDesc(const char* pDesc);
 
 	ITEMINFO GetItemInfo() const {
 		return m_tInfo;

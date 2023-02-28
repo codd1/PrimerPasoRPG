@@ -24,6 +24,21 @@ void CItemWeapon::SetWeaponInfo(int iAttackMin, int iAttackMax, float fCritical)
 	m_fCritical = fCritical;
 }
 
+void CItemWeapon::SetAttackMin(int iAttackMin)
+{
+	m_iAttackMin = iAttackMin;
+}
+
+void CItemWeapon::SetAttackMax(int iAttackMax)
+{
+	m_iAttackMax = iAttackMax;
+}
+
+void CItemWeapon::SetCritical(float fCritical)
+{
+	m_fCritical = fCritical;
+}
+
 bool CItemWeapon::Init()
 {
 	return true;
