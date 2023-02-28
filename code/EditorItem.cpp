@@ -67,6 +67,7 @@ void CEditorItem::Run()
 			ModifyItem();
 			break;
 		case EIM_DELETE:
+			DeleteItem();
 			break;
 		case EIM_OUTPUT:
 			OutputItemList();
@@ -394,6 +395,46 @@ void CEditorItem::ModifyItem()
 			}
 		}
 	}
+}
+
+void CEditorItem::DeleteItem()
+{
+	system("cls");
+	cout << "=================== 아이템 삭제 ===================" << endl;
+	int iItemType = 0;
+	while (iItemType <= 0 || iItemType > IT_MAX) {
+		cout << "1. 무기" << endl;
+		cout << "2. 방어구" << endl;
+		cout << "아이템 종류를 선택하세요: ";
+		iItemType = Input<int>();
+	}
+
+	int iChooseItem = 0;
+
+	switch (iItemType - 1) {
+	case IT_WEAPON:
+		OutputWeaponList();
+		while (iChooseItem <= 0 || iChooseItem > m_vecWeapon.size() + 1) {
+			cout << m_vecWeapon.size() + 1 << ". 뒤로가기" << endl;
+			cout << "삭제할 아이템을 선택하세요: ";
+			iChooseItem = Input<int>();
+		}
+		cout << endl << m_vecWeapon[iChooseItem - 1]->GetName() << " 아이템이 삭제되었습니다." << endl;
+		m_vecWeapon.erase(m_vecWeapon.begin() + (iChooseItem - 1));
+		break;
+	case IT_ARMOR:
+		OutputArmorList();
+		while (iChooseItem <= 0 || iChooseItem > m_vecArmor.size() + 1) {
+			cout << m_vecArmor.size() + 1 << ". 뒤로가기" << endl;
+			cout << "삭제할 아이템을 선택하세요: ";
+			iChooseItem = Input<int>();
+		}
+		cout << endl << m_vecArmor[iChooseItem - 1]->GetName() << " 아이템이 삭제되었습니다." << endl;
+		m_vecArmor.erase(m_vecArmor.begin() + (iChooseItem - 1));
+		break;
+	}
+
+	system("pause");
 }
 
 void CEditorItem::OutputWeaponList()

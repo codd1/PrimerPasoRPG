@@ -56,8 +56,10 @@ void CEditorMonster::Run()
 			ModifyMonster();
 			break;
 		case EMM_DELETE:
+			DeleteMonster();
 			break;
 		case EMM_OUTPUT:
+			system("cls");
 			OutputMonsterList();
 			system("pause");
 			break;
@@ -279,9 +281,28 @@ void CEditorMonster::ModifyMonster()
 	}
 }
 
-void CEditorMonster::OutputMonsterList()
+void CEditorMonster::DeleteMonster()
 {
 	system("cls");
+	cout << "=================== 아이템 삭제 ===================" << endl;
+
+	int iChooseMonster = 0;
+
+	OutputMonsterList();
+	while (iChooseMonster <= 0 || iChooseMonster > m_vecMonster.size() + 1) {
+		cout << m_vecMonster.size() + 1 << ". 뒤로가기" << endl;
+		cout << "삭제할 몬스터를 선택하세요: ";
+		iChooseMonster = Input<int>();
+	}
+
+	cout << endl << m_vecMonster[iChooseMonster - 1]->GetName() << " 몬스터가 삭제되었습니다." << endl;
+	m_vecMonster.erase(m_vecMonster.begin() + (iChooseMonster - 1));
+
+	system("pause");
+}
+
+void CEditorMonster::OutputMonsterList()
+{
 	cout << "=================== 몬스터 목록 ===================" << endl;
 
 	for (size_t i = 0; i < m_vecMonster.size(); i++) {

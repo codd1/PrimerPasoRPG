@@ -17,6 +17,7 @@ private:
 	int OutputMenu();
 	void InsertItem();
 	void ModifyItem();
+	void DeleteItem();
 	void OutputWeaponList();
 	void OutputArmorList();
 	void OutputItemList();

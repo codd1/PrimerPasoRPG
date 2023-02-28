@@ -14,6 +14,7 @@ private:
 	int OutputMenu();
 	void InsertMonster();
 	void ModifyMonster();
+	void DeleteMonster();
 	void OutputMonsterList();
 	void SaveMonster();
 	void LoadMonster();
