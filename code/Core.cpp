@@ -80,7 +80,7 @@ void CCore::Run()
 			system("pause");
 			break;
 		case MM_EXIT:
-			return;
+			exit(0);
 		}
 	}
 }

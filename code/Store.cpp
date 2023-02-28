@@ -51,7 +51,7 @@ void CStore::OutputItemList()
 	// iterator를 이용한 for문 (위에랑 같음)
 	vector<CItem*>::iterator iter;
 	int iCount = 1;
-	for (iter = m_vecItem.begin(); iter != m_vecItem.end(); iter++) {
+	for (iter = m_vecItem.begin(); iter != m_vecItem.end(); iter++, iCount++) {
 		cout << iCount << ". ";
 		(*iter)->Render();
 		cout << endl;

@@ -109,8 +109,10 @@ class CItem* CPlayer::Equip(CItem* pItem)
 bool CPlayer::Init()
 {
 	system("cls");
+	cout << "============= [PrimerPasoRPG]에 오신 것을 환영합니다. =============" << endl;
 	cin.ignore(1024, '\n');
 
+	cout << endl;
 	cout << "이름을 입력하세요: ";
 	char strName[31];
 	cin.getline(strName, 31);
@@ -119,7 +121,7 @@ bool CPlayer::Init()
 	int iJob;
 
 	while (true) {
-		system("cls");
+		cout << endl;
 		cout << "1. 기사" << endl;
 		cout << "2. 궁수" << endl;
 		cout << "3. 마법사" << endl;
