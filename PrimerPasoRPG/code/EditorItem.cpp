@@ -526,7 +526,7 @@ void CEditorItem::SaveItem()
 		m_vecArmor[i]->Save(&file2);
 	}*/
 
-	cout << "파일 저장 완료" << endl;
+	cout << endl << "파일 저장 완료" << endl;
 	system("pause");
 }
 
@@ -618,6 +618,6 @@ void CEditorItem::LoadItem()
 		file.Close();
 	}
 
-	cout << "파일 불러오기 완료" << endl;
+	cout << endl << "파일 불러오기 완료" << endl;
 	system("pause");
 }

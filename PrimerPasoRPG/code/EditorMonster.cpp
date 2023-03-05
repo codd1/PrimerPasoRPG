@@ -319,9 +319,6 @@ void CEditorMonster::OutputMonsterList()
 
 void CEditorMonster::SaveMonster()
 {
-	system("cls");
-	cout << "=================== 파일 저장 ===================" << endl;
-
 	CFileStream file("MonsterList.mtl", "wb");
 
 	// 몬스터 수를 저장한다.
@@ -334,15 +331,14 @@ void CEditorMonster::SaveMonster()
 		m_vecMonster[i]->Save(&file);
 	}
 
-	cout << "파일 저장 완료" << endl;
+	file.Close();
+
+	cout << endl << "파일 저장 완료" << endl;
 	system("pause");
 }
 
 void CEditorMonster::LoadMonster()
 {
-	system("cls");
-	cout << "=================== 파일 불러오기 ===================" << endl;
-
 	// 기존 몬스터 정보를 읽어오기 전에 전의 vector list를 지운다.
 	Safe_Delete_VecList(m_vecMonster);
 
@@ -367,6 +363,8 @@ void CEditorMonster::LoadMonster()
 		m_vecMonster.push_back(pMonster);
 	}
 
-	cout << "파일 불러오기 완료" << endl;
+	file.Close();
+
+	cout << endl << "파일 불러오기 완료" << endl;
 	system("pause");
 }

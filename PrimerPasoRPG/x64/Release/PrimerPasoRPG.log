@@ -1,7 +1,7 @@
-﻿  EditorItem.cpp
+﻿  Core.cpp
   코드를 생성하고 있습니다.
-  3 of 803 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
+  2 of 803 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    10 functions had inline decision re-evaluated but remain unchanged
+    38 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
-  PrimerPasoRPG.vcxproj -> C:\Users\little Hong\source\repos\PrimerPasoRPG\x64\Release\PrimerPasoRPG.exe
+  PrimerPasoRPG.vcxproj -> C:\Users\CYHONG\source\repos\PrimerPasoRPG\x64\Release\PrimerPasoRPG.exe

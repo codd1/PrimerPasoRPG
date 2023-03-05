@@ -16,6 +16,7 @@ private:
 	int OutputMenu();
 	void SetLevelUpInfo();
 	LEVELUPINFO CreateLevelUpInfo(int iAttackMin, int iAttackMax, int iArmorMin, int iArmorMax, int iHP, int iMP);
+	void OutputGameInfo();
 
 	DECLARE_SINGLE(CCore)
 };
