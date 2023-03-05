@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CStage" Collapsed="true">
+    <Position X="3" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAQAAAAAAAAAAAAEAAAAAAECACAAAAAAI=</HashCode>
+      <FileName>code\Stage.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CCore" Collapsed="true">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAACAAAAAAI=</HashCode>
+      <FileName>code\Core.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CStageEasy" Collapsed="true">
+    <Position X="0.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEIAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAI=</HashCode>
+      <FileName>code\StageEasy.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CStageHard" Collapsed="true">
+    <Position X="3" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAACAAAAAAAAAAAAAACAAAAAAI=</HashCode>
+      <FileName>code\StageHard.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CStageManager" Collapsed="true">
+    <Position X="16.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAACEAAAAAAAAACAAAAAAI=</HashCode>
+      <FileName>code\StageManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CStageNormal" Collapsed="true">
+    <Position X="5.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAM=</HashCode>
+      <FileName>code\StageNormal.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CObject" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAACAAAAAAAAAAAAAAAAFACQAABRBA=</HashCode>
+      <FileName>code\Object.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CObjectManager" Collapsed="true">
+    <Position X="14.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAACAAAAAAAAAAAAAAAAAAAAAgAAAAACAAgAAAA=</HashCode>
+      <FileName>code\ObjectManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CCharacter" Collapsed="true">
+    <Position X="1.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAACEAAgAAAAIAgAAAAQAAAAAAAAAIBBSAAAAIBA=</HashCode>
+      <FileName>code\Character.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMonster" Collapsed="true">
+    <Position X="0.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgBAACAACAAAAAEAAAAAAAAAABACAAIAABA=</HashCode>
+      <FileName>code\Monster.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CPlayer" Collapsed="true">
+    <Position X="3" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAIAAAAAAAAAAAAABAAAAAAIIAgAAAAABACAAAAIBA=</HashCode>
+      <FileName>code\Player.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CItem" Collapsed="true">
+    <Position X="6.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAABAAAAAAAAABBACAQAAABQ=</HashCode>
+      <FileName>code\Item.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CItemArmor" Collapsed="true">
+    <Position X="7.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAABAAAAEAAAAAIAABACAAAAAJA=</HashCode>
+      <FileName>code\ItemArmor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CItemWeapon" Collapsed="true">
+    <Position X="5.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAIAAAAACAAAAAAAAACIAAAAAAAAABACgAAAABA=</HashCode>
+      <FileName>code\ItemWeapon.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CStore" Collapsed="true">
+    <Position X="1.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAIAAAAAAAAAAAAAAAAAAAgAAAAAAIAAACAAAAAAI=</HashCode>
+      <FileName>code\Store.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CStoreArmor" Collapsed="true">
+    <Position X="0.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAACCAAAAAI=</HashCode>
+      <FileName>code\StoreArmor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CStoreManager" Collapsed="true">
+    <Position X="13" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAEABAAAAAAACAAAAAAI=</HashCode>
+      <FileName>code\StoreManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CStoreWeapon" Collapsed="true">
+    <Position X="2.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAABACAAAAAAI=</HashCode>
+      <FileName>code\StoreWeapon.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="_tagCharacterInfo" Collapsed="true">
+    <Position X="10.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAEAAAAIBgAIAAAAAAAABAAAAAAAAAAAAAABEA=</HashCode>
+      <FileName>code\value.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="_tagItemInfo" Collapsed="true">
+    <Position X="6.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQICACAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>code\value.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Typedef Name="CHARACTERINFO" Collapsed="true">
+    <Position X="10.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>code\value.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="PCHARACTERINFO" Collapsed="true">
+    <Position X="10.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>code\value.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="ITEMINFO" Collapsed="true">
+    <Position X="7.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>code\value.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="PITEMINFO" Collapsed="true">
+    <Position X="6.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>code\value.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Enum Name="OBJECT_TYPE" Collapsed="true">
+    <Position X="13" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgEAAAAAAAAAAAAAAAAACAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>code\Flags.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ITEM_TYPE" Collapsed="true">
+    <Position X="13" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAIAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>code\Flags.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JOB" Collapsed="true">
+    <Position X="14.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAgAAAAAAACQAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>code\value.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="MAIN_MENU" Collapsed="true">
+    <Position X="16.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAACAAAAACAAAAQAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>code\Core.cpp</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="STAGE_TYPE" Collapsed="true">
+    <Position X="14.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAwAAAAAAQABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>code\StageManager.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="STORE_TYPE" Collapsed="true">
+    <Position X="16.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAgAAAgAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>code\StoreManager.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>
