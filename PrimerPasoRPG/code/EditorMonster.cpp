@@ -114,10 +114,13 @@ void CEditorMonster::InsertMonster()
 	pMonster->SetName(strName);
 
 	int iAttackMin, iAttackMax, iArmorMin, iArmorMax, iHP, iMP, iLevel, iExp;
+	float fCritical;
 	cout << "최소 공격력: ";
 	cin >> iAttackMin;
 	cout << "최대 공격력: ";
 	cin >> iAttackMax;
+	cout << "치명타율: ";
+	cin >> fCritical;
 	cout << "최소 방어력: ";
 	cin >> iArmorMin;
 	cout << "최대 방어력: ";
@@ -131,7 +134,7 @@ void CEditorMonster::InsertMonster()
 	cout << "획득 경험치: ";
 	cin >> iExp;
 
-	pMonster->SetCharacterInfo(iAttackMin, iAttackMax, iArmorMin, iArmorMax, iHP, iMP, iLevel, iExp);
+	pMonster->SetCharacterInfo(iAttackMin, iAttackMax, fCritical, iArmorMin, iArmorMax, iHP, iMP, iLevel, iExp);
 
 	int iGoldMin, iGoldMax;
 	cout << "최소 골드: ";

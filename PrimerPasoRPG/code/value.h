@@ -62,6 +62,7 @@ typedef struct _tagCharacterInfo
 {
 	int		iAttackMin;
 	int		iAttackMax;
+	float	fCritical;
 	int		iArmorMin;
 	int		iArmorMax;
 	int		iHP;

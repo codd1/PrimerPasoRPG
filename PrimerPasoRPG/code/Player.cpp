@@ -55,7 +55,8 @@ int CPlayer::GetDamage()
 		iMin += ((CItemWeapon*)m_pEquip[EQ_WEAPON])->GetAttackMin();
 		iMax += ((CItemWeapon*)m_pEquip[EQ_WEAPON])->GetAttackMax();
 
-		if (rand() % 9901 / 100.f <= ((CItemWeapon*)m_pEquip[EQ_WEAPON])->GetCritical()) {
+		// 0~99 사이의 랜덤 값이 치명타율 총합보다 작으면 치명타 공격
+		if (rand() % 9901 / 100.f <= ((CItemWeapon*)m_pEquip[EQ_WEAPON])->GetCritical() + m_tInfo.fCritical) {
 			cout << "Critical" << endl;
 			iMin *= 2;
 			iMax *= 2;
@@ -139,15 +140,15 @@ bool CPlayer::Init()
 	switch (m_eJob) {
 	case JOB_KNIGHT:
 		m_strJobName = "기사";
-		SetCharacterInfo(10, 15, 15, 20, 500, 100, 1, 0);
+		SetCharacterInfo(10, 15, 5.0f, 15, 20, 500, 100, 1, 0);
 		break;
 	case JOB_ARCHER:
 		m_strJobName = "궁수";
-		SetCharacterInfo(15, 20, 10, 15, 400, 200, 1, 0);
+		SetCharacterInfo(15, 20, 5.0f, 10, 15, 400, 200, 1, 0);
 		break;
 	case JOB_WIZARD:
 		m_strJobName = "마법사";
-		SetCharacterInfo(20, 25, 5, 10, 300, 300, 1, 0);
+		SetCharacterInfo(20, 25, 5.0f, 5, 10, 300, 300, 1, 0);
 		break;
 	}
 
@@ -156,12 +157,15 @@ bool CPlayer::Init()
 
 void CPlayer::Render()
 {
+	float fCriticalSum = m_tInfo.fCritical;
+
 	cout << "이름: " << m_strName << "\t직업: " << m_strJobName << endl;
 	cout << "레벨: " << m_tInfo.iLevel << "\t\t경험치: " << m_tInfo.iExp << endl;
 	cout << "공격력: ";
 	// 무기 아이템을 장착하고 있을 경우
 	if (m_pEquip[EQ_WEAPON]) {
 		cout << m_tInfo.iAttackMin << " + " << ((CItemWeapon*)m_pEquip[EQ_WEAPON])->GetAttackMin() << " ~ " << m_tInfo.iAttackMax << " + " << ((CItemWeapon*)m_pEquip[EQ_WEAPON])->GetAttackMax();
+		fCriticalSum += ((CItemWeapon*)m_pEquip[EQ_WEAPON])->GetCritical();
 	}
 	else {		// 무기 아이템을 장착하고 있지 않은 경우
 		cout << m_tInfo.iAttackMin << " - " << m_tInfo.iAttackMax;
@@ -171,11 +175,13 @@ void CPlayer::Render()
 
 	// 방어구 아이템을 장착하고 있을 경우
 	if (m_pEquip[EQ_ARMOR]) {
-		cout << m_tInfo.iArmorMin << " + " << ((CItemArmor*)m_pEquip[EQ_ARMOR])->GetArmorMin() << " ~ " << m_tInfo.iArmorMax << " + " << ((CItemArmor*)m_pEquip[EQ_ARMOR])->GetArmorMax() << endl;
+		cout << m_tInfo.iArmorMin << " + " << ((CItemArmor*)m_pEquip[EQ_ARMOR])->GetArmorMin() << " ~ " << m_tInfo.iArmorMax << " + " << ((CItemArmor*)m_pEquip[EQ_ARMOR])->GetArmorMax();
 	}
 	else {		// 방어구 아이템을 장착하고 있지 않은 경우
-		cout << m_tInfo.iArmorMin << " - " << m_tInfo.iArmorMax << endl;
+		cout << m_tInfo.iArmorMin << " - " << m_tInfo.iArmorMax;
 	}
+
+	cout << "\t치명타율: " << fCriticalSum << endl;
 
 	cout << "체력: " << m_tInfo.iHP << " / " << m_tInfo.iHPMax << "\t마나: " << m_tInfo.iMP << " / " << m_tInfo.iMPMax << endl;
 	cout << "보유 금액: " << m_iGold << " Gold" << endl << endl;
