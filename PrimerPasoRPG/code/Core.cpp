@@ -94,7 +94,8 @@ void CCore::Run()
 			OutputGameInfo();
 			break;
 		case MM_EXIT:
-			exit(0);
+			CheckExit();
+			break;
 		}
 	}
 }
@@ -203,5 +204,19 @@ void CCore::OutputGameInfo()
 		break;
 	case GIM_BACK:
 		return;
+	}
+}
+
+void CCore::CheckExit()
+{
+	cout << endl << "종료하시겠습니까?(Y/N): " << endl;
+	char iYN = 'n';
+	while ((iYN = getchar()) != NULL) {
+		if (iYN == 'y' || iYN == 'Y') {
+			exit(0);
+		}
+		else if (iYN == 'n' || iYN == 'N') {
+			return;
+		}
 	}
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "value.h"
+#include "conio.h"
 
 class CCore
 {
@@ -17,6 +18,7 @@ private:
 	void SetLevelUpInfo();
 	LEVELUPINFO CreateLevelUpInfo(int iAttackMin, int iAttackMax, int iArmorMin, int iArmorMax, int iHP, int iMP);
 	void OutputGameInfo();
+	void CheckExit();
 
 	DECLARE_SINGLE(CCore)
 };
