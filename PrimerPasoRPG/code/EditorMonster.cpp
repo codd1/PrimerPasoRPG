@@ -21,8 +21,7 @@ enum MODIFY_MONSTER_MENU {
 	MMM_STAGETYPE,
 	MMM_ATTACKMIN,
 	MMM_ATTACKMAX,
-	MMM_ARMORMIN,
-	MMM_ARMORMAX,
+	MMM_ARMOR,
 	MMM_HP,
 	MMM_MP,
 	MMM_GOLD,
@@ -113,7 +112,7 @@ void CEditorMonster::InsertMonster()
 
 	pMonster->SetName(strName);
 
-	int iAttackMin, iAttackMax, iArmorMin, iArmorMax, iHP, iMP, iLevel, iExp;
+	int iAttackMin, iAttackMax, iArmor, iArmorMax, iHP, iMP, iLevel, iExp;
 	float fCritical;
 	cout << "최소 공격력: ";
 	cin >> iAttackMin;
@@ -121,10 +120,8 @@ void CEditorMonster::InsertMonster()
 	cin >> iAttackMax;
 	cout << "치명타율: ";
 	cin >> fCritical;
-	cout << "최소 방어력: ";
-	cin >> iArmorMin;
-	cout << "최대 방어력: ";
-	cin >> iArmorMax;
+	cout << "방어력: ";
+	cin >> iArmor;
 	cout << "체력: ";
 	cin >> iHP;
 	cout << "마나: ";
@@ -134,7 +131,7 @@ void CEditorMonster::InsertMonster()
 	cout << "획득 경험치: ";
 	cin >> iExp;
 
-	pMonster->SetCharacterInfo(iAttackMin, iAttackMax, fCritical, iArmorMin, iArmorMax, iHP, iMP, iLevel, iExp);
+	pMonster->SetCharacterInfo(iAttackMin, iAttackMax, fCritical, iArmor, iHP, iMP, iLevel, iExp);
 
 	int iGoldMin, iGoldMax;
 	cout << "최소 골드: ";
@@ -194,7 +191,7 @@ void CEditorMonster::ModifyMonster()
 		cout << endl << endl;
 		cout << "1. 이름\t\t2. 난이도" << endl;
 		cout << "3. 최소 공격력\t4. 최대 공격력" << endl;
-		cout << "5. 최소 방어력\t6. 최대 방어력" << endl;
+		cout << "5. 방어력" << endl;
 		cout << "7. HP\t\t8. MP" << endl;
 		cout << "9. 처치 시 획득 골드" << endl;
 		cout << "10. 레벨\t11. 경험치" << endl;
@@ -241,15 +238,10 @@ void CEditorMonster::ModifyMonster()
 			iInput = Input<int>();
 			m_vecMonster[iChooseMonster - 1]->SetAttackMax(iInput);
 			break;
-		case MMM_ARMORMIN:
-			cout << "최소 방어력: ";
+		case MMM_ARMOR:
+			cout << "방어력: ";
 			iInput = Input<int>();
-			m_vecMonster[iChooseMonster - 1]->SetArmorMin(iInput);
-			break;
-		case MMM_ARMORMAX:
-			cout << "최대 방어력: ";
-			iInput = Input<int>();
-			m_vecMonster[iChooseMonster - 1]->SetArmorMax(iInput);
+			m_vecMonster[iChooseMonster - 1]->SetArmor(iInput);
 			break;
 		case MMM_HP:
 			cout << "HP: ";

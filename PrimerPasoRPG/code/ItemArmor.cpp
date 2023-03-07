@@ -8,28 +8,16 @@ CItemArmor::CItemArmor()
 CItemArmor::CItemArmor(const CItemArmor& item) :
 	CItem(item)
 {
-	m_iArmorMin = item.m_iArmorMin;
-	m_iArmorMax = item.m_iArmorMax;
+	m_iArmor = item.m_iArmor;
 }
 
 CItemArmor::~CItemArmor()
 {
 }
 
-void CItemArmor::SetArmorInfo(int iArmorMin, int iArmorMax)
+void CItemArmor::SetArmor(int iArmor)
 {
-	m_iArmorMax = iArmorMax;
-	m_iArmorMin = iArmorMin;
-}
-
-void CItemArmor::SetArmorMin(int iArmorMin)
-{
-	m_iArmorMin = iArmorMin;
-}
-
-void CItemArmor::SetArmorMax(int iArmorMax)
-{
-	m_iArmorMax = iArmorMax;
+	m_iArmor = iArmor;
 }
 
 bool CItemArmor::Init()
@@ -40,7 +28,7 @@ bool CItemArmor::Init()
 void CItemArmor::Render()
 {
 	cout << "이름: " << m_strName << "\t종류: " << m_tInfo.strTypeName << endl;
-	cout << "방어력: " << m_iArmorMin << " ~ " << m_iArmorMax << endl;
+	cout << "방어력: " << m_iArmor << endl;
 	cout << "구매가: " << m_tInfo.iPrice << "\t판매가: " << m_tInfo.iSell << endl;
 	cout << "아이템 설명: " << m_tInfo.strDesc << endl;
 }
@@ -54,14 +42,12 @@ void CItemArmor::Save(CFileStream* pFile)
 {
 	CItem::Save(pFile);
 
-	pFile->Write(&m_iArmorMin, 4);
-	pFile->Write(&m_iArmorMax, 4);
+	pFile->Write(&m_iArmor, 4);
 }
 
 void CItemArmor::Load(CFileStream* pFile)
 {
 	CItem::Load(pFile);
 
-	pFile->Read(&m_iArmorMin, 4);
-	pFile->Read(&m_iArmorMax, 4);
+	pFile->Read(&m_iArmor, 4);
 }

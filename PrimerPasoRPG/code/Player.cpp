@@ -69,14 +69,12 @@ int CPlayer::GetDamage()
 
 int CPlayer::GetArmor()
 {
-	int iMin = m_tInfo.iArmorMin;
-	int iMax = m_tInfo.iArmorMax;
+	int iArmor = m_tInfo.iArmor;
 
 	if (m_pEquip[EQ_ARMOR]) {
-		iMin += ((CItemArmor*)m_pEquip[EQ_ARMOR])->GetArmorMin();
-		iMax += ((CItemArmor*)m_pEquip[EQ_ARMOR])->GetArmorMax();
+		iArmor += ((CItemArmor*)m_pEquip[EQ_ARMOR])->GetArmor();
 	}
-	return rand() % (iMax - iMin + 1) + iMin;
+	return iArmor;
 }
 
 // 장착하고 있는게 있으면 장착하고 있던 아이템을 리턴, 없으면 NULL 리턴
@@ -140,15 +138,15 @@ bool CPlayer::Init()
 	switch (m_eJob) {
 	case JOB_KNIGHT:
 		m_strJobName = "기사";
-		SetCharacterInfo(10, 15, 5.0f, 15, 20, 500, 100, 1, 0);
+		SetCharacterInfo(5, 10, 5.0f, 15, 500, 100, 1, 0);
 		break;
 	case JOB_ARCHER:
 		m_strJobName = "궁수";
-		SetCharacterInfo(15, 20, 5.0f, 10, 15, 400, 200, 1, 0);
+		SetCharacterInfo(10, 15, 5.0f, 10, 400, 200, 1, 0);
 		break;
 	case JOB_WIZARD:
 		m_strJobName = "마법사";
-		SetCharacterInfo(20, 25, 5.0f, 5, 10, 300, 300, 1, 0);
+		SetCharacterInfo(15, 20, 5.0f, 5, 300, 300, 1, 0);
 		break;
 	}
 
@@ -175,10 +173,10 @@ void CPlayer::Render()
 
 	// 방어구 아이템을 장착하고 있을 경우
 	if (m_pEquip[EQ_ARMOR]) {
-		cout << m_tInfo.iArmorMin << " + " << ((CItemArmor*)m_pEquip[EQ_ARMOR])->GetArmorMin() << " ~ " << m_tInfo.iArmorMax << " + " << ((CItemArmor*)m_pEquip[EQ_ARMOR])->GetArmorMax();
+		cout << m_tInfo.iArmor << " + " << ((CItemArmor*)m_pEquip[EQ_ARMOR])->GetArmor();
 	}
 	else {		// 방어구 아이템을 장착하고 있지 않은 경우
-		cout << m_tInfo.iArmorMin << " - " << m_tInfo.iArmorMax;
+		cout << m_tInfo.iArmor;
 	}
 
 	cout << "\t치명타율: " << fCriticalSum << endl;

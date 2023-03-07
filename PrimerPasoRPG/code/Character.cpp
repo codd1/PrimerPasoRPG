@@ -31,14 +31,9 @@ void CCharacter::SetCritical(float fCritical)
 	m_tInfo.fCritical = fCritical;
 }
 
-void CCharacter::SetArmorMin(int iArmorMin)
+void CCharacter::SetArmor(int iArmor)
 {
-	m_tInfo.iArmorMin;
-}
-
-void CCharacter::SetArmorMax(int iArmorMax)
-{
-	m_tInfo.iArmorMax;
+	m_tInfo.iArmor;
 }
 
 void CCharacter::SetHP(int iHP)
@@ -61,13 +56,12 @@ void CCharacter::SetExp(int iExp)
 	m_tInfo.iExp;
 }
 
-void CCharacter::SetCharacterInfo(int iAtMin, int iAtMax, float fCritical, int iArMin, int iArMax, int iHP, int iMP, int iLevel, int iExp)
+void CCharacter::SetCharacterInfo(int iAtMin, int iAtMax, float fCritical, int iArmor, int iHP, int iMP, int iLevel, int iExp)
 {
 	m_tInfo.iAttackMin = iAtMin;
 	m_tInfo.iAttackMax = iAtMax;
 	m_tInfo.fCritical = fCritical;
-	m_tInfo.iArmorMin = iArMin;
-	m_tInfo.iArmorMax = iArMax;
+	m_tInfo.iArmor = iArmor;
 	m_tInfo.iHP = iHP;
 	m_tInfo.iHPMax = iHP;
 	m_tInfo.iMP = iMP;
@@ -127,8 +121,7 @@ void CCharacter::AddLevelUpStatus(const LEVELUPINFO& tInfo)
 {
 	m_tInfo.iAttackMin += tInfo.iAttackMin;
 	m_tInfo.iAttackMax += tInfo.iAttackMax;
-	m_tInfo.iArmorMin += tInfo.iArmorMin;
-	m_tInfo.iArmorMax += tInfo.iArmorMax;
+	m_tInfo.iArmor += tInfo.iArmor;
 
 	// 레벨업 했으므로 최대 체력, 마나를 바꾸고 체력과 마나를 풀로 채워준다.
 	m_tInfo.iHPMax += tInfo.iHP;

@@ -16,21 +16,15 @@ private:
 	friend class CEditorItem;
 
 private:
-	int m_iArmorMin;
-	int m_iArmorMax;
+	int m_iArmor;
 
 public:
-	int GetArmorMin() const {
-		return m_iArmorMin;
-	}
-	int GetArmorMax() const {
-		return m_iArmorMax;
+	int GetArmor() const {
+		return m_iArmor;
 	}
 
 public:
-	void SetArmorInfo(int iArmorMin, int iArmorMax);
-	void SetArmorMin(int iArmorMin);
-	void SetArmorMax(int iArmorMax);
+	void SetArmor(int iArmor);
 
 public:
 	virtual bool Init();

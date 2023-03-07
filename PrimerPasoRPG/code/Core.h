@@ -16,7 +16,7 @@ public:
 private:
 	int OutputMenu();
 	void SetLevelUpInfo();
-	LEVELUPINFO CreateLevelUpInfo(int iAttackMin, int iAttackMax, int iArmorMin, int iArmorMax, int iHP, int iMP);
+	LEVELUPINFO CreateLevelUpInfo(int iAttackMin, int iAttackMax, int iArmor, int iHP, int iMP);
 	void OutputGameInfo();
 	void CheckExit();
 

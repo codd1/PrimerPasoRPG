@@ -33,8 +33,7 @@ enum MODIFY_ARMOR_MENU {
 	MAM_NONE,
 	MAM_NAME,
 	MAM_ITEMTYPE,
-	MAM_ARMORMIN,
-	MAM_ARMORMAX,
+	MAM_ARMOR,
 	MAM_PRICE,
 	MAM_SELL,
 	MAM_DESC,
@@ -164,14 +163,11 @@ void CEditorItem::InsertItem()
 		break;
 
 	case IT_ARMOR:
-		int iArmorMin, iArmorMax;
-		cout << "최소 방어력: ";
-		iArmorMin = Input<int>();
+		int iArmor;
+		cout << "방어력: ";
+		iArmor = Input<int>();
 
-		cout << "최대 방어력: ";
-		iArmorMax = Input<int>();
-
-		((CItemArmor*)pItem)->SetArmorInfo(iArmorMin, iArmorMax);
+		((CItemArmor*)pItem)->SetArmor(iArmor);
 
 		break;
 	}
@@ -223,7 +219,7 @@ void CEditorItem::ModifyItem()
 
 	int iChooseItem;
 	char strName[256] = {};
-	int iAttackMin, iAttackMax, iArmorMin, iArmorMax;;
+	int iAttackMin, iAttackMax, iArmor;
 	float fCritical;
 	int iPrice, iSell;
 	char strDesc[512] = {};
@@ -329,9 +325,9 @@ void CEditorItem::ModifyItem()
 		while (true) {
 			cout << endl << endl;
 			cout << "1. 이름\t\t2. 종류(무기↔방어구)" << endl;
-			cout << "3. 최소 방어력\t4. 최대 방어력" << endl;
-			cout << "5. 구매가\t6. 판매가\t7. 아이템 설명" << endl;
-			cout << "8. 뒤로가기" << endl;
+			cout << "3. 방어력" << endl;
+			cout << "4. 구매가\t5. 판매가\t6. 아이템 설명" << endl;
+			cout << "7. 뒤로가기" << endl;
 			cout << "수정할 항목을 입력하세요: ";
 
 			int iModifyMenu = Input<int>();
@@ -364,15 +360,10 @@ void CEditorItem::ModifyItem()
 				cin >> fCritical;
 				((CItemWeapon*)m_vecWeapon[m_vecWeapon.size() - 1])->SetCritical(fCritical);*/
 				break;
-			case MAM_ARMORMIN:
-				cout << "최소 방어력: ";
-				cin >> iArmorMin;
-				((CItemArmor*)m_vecArmor[iChooseItem - 1])->SetArmorMin(iArmorMin);
-				break;
-			case MAM_ARMORMAX:
-				cout << "최대 방어력: ";
-				cin >> iArmorMax;
-				((CItemArmor*)m_vecArmor[iChooseItem - 1])->SetArmorMax(iArmorMax);
+			case MAM_ARMOR:
+				cout << "방어력: ";
+				cin >> iArmor;
+				((CItemArmor*)m_vecArmor[iChooseItem - 1])->SetArmor(iArmor);
 				break;
 			case MAM_PRICE:
 				cout << "구매가: ";
