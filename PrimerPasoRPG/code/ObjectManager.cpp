@@ -38,19 +38,21 @@ bool CObjectManager::Init()
 	else {		// 파일이 없을 경우 (기본 값)
 		// CreateObject 함수는 몬스터를 생성하고 CObject* 타입을 리턴한다.
 		// 그런데 몬스터의 기본 변수들은 Monster 클래스나 Character 클래스가 가지고 있으므로 몬스터 클래스로 형변환하여 저장해두고 기능을 사용한다.
+
+		// 몬스터는 치명타, 마나 수치가 0이다 (기본 사양).
 		CMonster* pMonster = (CMonster*)CreateObject("Cat", OT_MONSTER);
 		pMonster->SetName("심기 불편한 고양이");
-		pMonster->SetCharacterInfo(10, 20, 0.0f, 3, 100, 10, 1, 1000);
+		pMonster->SetCharacterInfo(10, 20, 0.0f, 3, 100, 0, 0, 1, 1000);
 		pMonster->SetGold(1000, 2000);
 
 		pMonster = (CMonster*)CreateObject("Bear", OT_MONSTER);
 		pMonster->SetName("화난 곰");
-		pMonster->SetCharacterInfo(50, 80, 0.0f, 40, 2000, 300, 5, 7000);
+		pMonster->SetCharacterInfo(50, 80, 0.0f, 40, 2000, 0, 0, 5, 7000);
 		pMonster->SetGold(5000, 10000);
 
 		pMonster = (CMonster*)CreateObject("Dragon", OT_MONSTER);
 		pMonster->SetName("드래곤");
-		pMonster->SetCharacterInfo(150, 250, 0.0f, 150, 10000, 10000, 10, 25000);
+		pMonster->SetCharacterInfo(150, 250, 0.0f, 150, 10000, 0, 0, 10, 25000);
 		pMonster->SetGold(30000, 50000);
 
 	}

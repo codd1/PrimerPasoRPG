@@ -67,6 +67,7 @@ typedef struct _tagCharacterInfo
 	int		iHP;
 	int		iHPMax;
 	int		iMP;
+	int		iMPUse;
 	int		iMPMax;
 	int		iLevel;
 	int		iExp;

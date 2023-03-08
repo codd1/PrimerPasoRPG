@@ -45,21 +45,22 @@ void CStageEasy::Run()
 
 				break;
 			case BF_MONSTER_DIE:
+				cout << endl << "[시스템] " << pPlayer->GetName() << " 이(가) " << pMonster->GetName() << "을 처치했습니다." << endl << endl;
 				pPlayer->AddExp(pMonster->GetCharacterInfo().iExp);
-				cout << pPlayer->GetName() << " 이(가) " << pMonster->GetCharacterInfo().iExp << " 경험치를 획득했습니다." << endl;
-				
+				cout << "[시스템] " << pMonster->GetCharacterInfo().iExp << " 경험치 획득" << endl;
+
 				pPlayer->AddGold(pMonster->GetDropGold());
-				cout << pPlayer->GetName() << " 이(가) " << pMonster->GetDropGold() << " Gold를 획득했습니다." << endl;
+				cout << "[시스템] " << pMonster->GetDropGold() << " Gold 획득" << endl << endl;
 
 				// 레벨업 조건을 만족하면 true 반환 후 레벨업
 				if (pPlayer->CheckLevelUp()) {
-					
+
 					pPlayer->LevelUp();
 
 					// 직업에 맞춰 능력치 상승
 					pPlayer->AddLevelUpStatus(GET_SINGLE(CCore)->GetLevelUpInfo(pPlayer->GetJob()));
 
-					cout << "Level Up!" << endl;
+					cout << "Level Up!" << endl << endl;
 				}
 
 				// 몬스터를 삭제하고 다시 복사해서 생성해준다. (몬스터 리젠)

@@ -1,20 +1,6 @@
-﻿  Character.cpp
-C:\Users\CYHONG\source\repos\PrimerPasoRPG\PrimerPasoRPG\code\Character.cpp(102,31): warning C4244: '-=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  EditorMonster.cpp
-C:\Users\CYHONG\source\repos\PrimerPasoRPG\PrimerPasoRPG\code\EditorMonster.cpp(115,38): warning C4101: 'iArmorMax' :참조되지 않은 지역 변수입니다.
-  Inventory.cpp
-  Monster.cpp
-  ObjectManager.cpp
-  Player.cpp
-C:\Users\CYHONG\source\repos\PrimerPasoRPG\PrimerPasoRPG\code\Player.cpp(46,21): warning C4244: '-=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Stage.cpp
-  StageEasy.cpp
-  StageHard.cpp
-  StageNormal.cpp
-  StoreArmor.cpp
-  StoreWeapon.cpp
+﻿  Monster.cpp
   코드를 생성하고 있습니다.
-  2 of 800 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+  1 of 801 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     1 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.

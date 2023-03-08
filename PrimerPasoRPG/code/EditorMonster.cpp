@@ -23,7 +23,6 @@ enum MODIFY_MONSTER_MENU {
 	MMM_ATTACKMAX,
 	MMM_ARMOR,
 	MMM_HP,
-	MMM_MP,
 	MMM_GOLD,
 	MMM_LEVEL,
 	MMM_EXP,
@@ -124,14 +123,12 @@ void CEditorMonster::InsertMonster()
 	cin >> iArmor;
 	cout << "체력: ";
 	cin >> iHP;
-	cout << "마나: ";
-	cin >> iMP;
 	cout << "레벨: ";
 	cin >> iLevel;
 	cout << "획득 경험치: ";
 	cin >> iExp;
 
-	pMonster->SetCharacterInfo(iAttackMin, iAttackMax, fCritical, iArmor, iHP, iMP, iLevel, iExp);
+	pMonster->SetCharacterInfo(iAttackMin, iAttackMax, fCritical, iArmor, iHP, 0, 0, iLevel, iExp);
 
 	int iGoldMin, iGoldMax;
 	cout << "최소 골드: ";
@@ -191,11 +188,10 @@ void CEditorMonster::ModifyMonster()
 		cout << endl << endl;
 		cout << "1. 이름\t\t2. 난이도" << endl;
 		cout << "3. 최소 공격력\t4. 최대 공격력" << endl;
-		cout << "5. 방어력" << endl;
-		cout << "7. HP\t\t8. MP" << endl;
-		cout << "9. 처치 시 획득 골드" << endl;
-		cout << "10. 레벨\t11. 경험치" << endl;
-		cout << "12. 뒤로가기" << endl;
+		cout << "5. 방어력\t6. HP" << endl;
+		cout << "7. 처치 시 획득 골드" << endl;
+		cout << "8. 레벨\t9. 경험치" << endl;
+		cout << "10. 뒤로가기" << endl;
 		cout << "수정할 항목을 입력하세요: ";
 		// 수정할 항목을 입력 받고, 기존 정보 지운 후 새로운 정보 새로 입력
 		int iModifyMenu = Input<int>();
@@ -248,11 +244,6 @@ void CEditorMonster::ModifyMonster()
 			iInput = Input<int>();
 			m_vecMonster[iChooseMonster - 1]->SetHP(iInput);
 			break;
-		case MMM_MP:
-			cout << "MP: ";
-			iInput = Input<int>();
-			m_vecMonster[iChooseMonster - 1]->SetMP(iInput);
-			break;
 		case MMM_GOLD:
 			cout << "최소 획득 골드: ";
 			iGoldMin = Input<int>();
@@ -279,7 +270,7 @@ void CEditorMonster::ModifyMonster()
 void CEditorMonster::DeleteMonster()
 {
 	system("cls");
-	cout << "=================== 아이템 삭제 ===================" << endl;
+	cout << "=================== 몬스터 삭제 ===================" << endl;
 
 	int iChooseMonster = 0;
 

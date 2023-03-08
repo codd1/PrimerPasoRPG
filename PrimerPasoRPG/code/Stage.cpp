@@ -32,12 +32,20 @@ int CStage::OutputMenu()
 // 그러므로 앞에 CStage:: 를 붙여주어서 타입을 사용해야한다.
 CStage::BATTLE_FLAG CStage::BattleAttack(CPlayer* pPlayer, CMonster* pMonster)
 {
+	if (!pPlayer->CheckMP()) {
+		cout << endl << "[시스템] 마나가 부족합니다." << endl << endl;
+		return BF_NONE;
+	}
+
 	// 플레이어의 데미지를 구해온다.
 	int iDamage = pPlayer->GetDamage() - pMonster->GetArmor();
 	// 최소 데미지 1
 	iDamage = iDamage < 1 ? 1 : iDamage;
 
-	cout << pPlayer->GetName() << " 이(가) " << pMonster->GetName() << " 에게 " << iDamage << " 피해를 주었습니다." << endl;
+	int iMP = pPlayer->GetCharacterInfo().iMP - pPlayer->GetCharacterInfo().iMPUse;
+	pPlayer->SetMP(iMP);
+
+	cout << endl << "[시스템] " << pPlayer->GetName() << " 이(가) " << pMonster->GetName() << " 에게 " << iDamage << " 피해를 주었습니다." << endl;
 
 	// true일 경우 몬스터가 사망한 것이다.
 	if (pMonster->Damage(iDamage)) {
@@ -48,7 +56,7 @@ CStage::BATTLE_FLAG CStage::BattleAttack(CPlayer* pPlayer, CMonster* pMonster)
 	iDamage = pMonster->GetDamage() - pPlayer->GetArmor();
 	iDamage = iDamage < 1 ? 1 : iDamage;
 
-	cout << pMonster->GetName() << " 이(가) " << pPlayer->GetName() << " 에게 " << iDamage << " 피해를 주었습니다." << endl;
+	cout << "[시스템] " << pMonster->GetName() << " 이(가) " << pPlayer->GetName() << " 에게 " << iDamage << " 피해를 주었습니다." << endl << endl;
 
 	// true일 경우 플레이어가 사망한 것이다.
 	if (pPlayer->Damage(iDamage)) {

@@ -37,12 +37,11 @@ void CMonster::Render()
 		cout << "\t³­ÀÌµµ: Hard" << endl;
 		break;
 	}
-	cout << "·¹º§: " << m_tInfo.iLevel << "\t\tÈ¹µæ °æÇèÄ¡: " << m_tInfo.iExp << endl;
+	cout << "·¹º§: " << m_tInfo.iLevel << "\t\tÃ¼·Â: " << m_tInfo.iHP << " / " << m_tInfo.iHPMax << endl;
 	cout << "°ø°Ý·Â: " << m_tInfo.iAttackMin << " - " << m_tInfo.iAttackMax;
 	cout << "\t¹æ¾î·Â: " << m_tInfo.iArmor;
 	cout << "\tÄ¡¸íÅ¸À²: " << m_tInfo.fCritical << endl;
-	cout << "Ã¼·Â: " << m_tInfo.iHP << " / " << m_tInfo.iHPMax << "\t¸¶³ª: " << m_tInfo.iMP << " / " << m_tInfo.iMPMax << endl;
-	cout << "È¹µæ ±Ý¾×: " << m_iGoldMin << " - " << m_iGoldMax << " Gold" << endl << endl;
+	cout << "È¹µæ °æÇèÄ¡ : " << m_tInfo.iExp << "\t\tÈ¹µæ ±Ý¾× : " << m_iGoldMin << " - " << m_iGoldMax << " Gold" << endl << endl;
 }
 
 CMonster* CMonster::Clone()

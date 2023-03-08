@@ -39,6 +39,8 @@ public:
 		return m_pEquip[eq];
 	}
 
+	bool CheckMP();
+
 	virtual int GetDamage();
 	virtual int GetArmor();
 

@@ -46,6 +46,14 @@ void CPlayer::DropGold()
 	m_iGold -= m_iGold * 0.1f;
 }
 
+bool CPlayer::CheckMP()
+{
+	if (m_tInfo.iMP < m_tInfo.iMPUse) {
+		return false;
+	}
+	return true;
+}
+
 int CPlayer::GetDamage()
 {
 	int iMin = m_tInfo.iAttackMin;
@@ -57,7 +65,7 @@ int CPlayer::GetDamage()
 
 		// 0~99 사이의 랜덤 값이 치명타율 총합보다 작으면 치명타 공격
 		if (rand() % 9901 / 100.f <= ((CItemWeapon*)m_pEquip[EQ_WEAPON])->GetCritical() + m_tInfo.fCritical) {
-			cout << "Critical" << endl;
+			cout << endl << "[시스템] " << "Critical!" << endl;
 			iMin *= 2;
 			iMax *= 2;
 		}
@@ -138,15 +146,15 @@ bool CPlayer::Init()
 	switch (m_eJob) {
 	case JOB_KNIGHT:
 		m_strJobName = "기사";
-		SetCharacterInfo(5, 10, 5.0f, 15, 500, 100, 1, 0);
+		SetCharacterInfo(5, 10, 5.0f, 15, 500, 5, 100, 1, 0);
 		break;
 	case JOB_ARCHER:
 		m_strJobName = "궁수";
-		SetCharacterInfo(10, 15, 5.0f, 10, 400, 200, 1, 0);
+		SetCharacterInfo(10, 15, 5.0f, 10, 400, 10, 200, 1, 0);
 		break;
 	case JOB_WIZARD:
 		m_strJobName = "마법사";
-		SetCharacterInfo(15, 20, 5.0f, 5, 300, 300, 1, 0);
+		SetCharacterInfo(15, 20, 5.0f, 5, 300, 15, 300, 1, 0);
 		break;
 	}
 

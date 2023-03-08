@@ -17,6 +17,7 @@ public:
 	void SetCritical(float fCritical);
 	void SetArmor(int iArmor);
 	void SetHP(int iHP);
+	void SetMPUse(int iMPUse);
 	void SetMP(int iMP);
 	void SetLevel(int iLevel);
 	void SetExp(int iExp);
@@ -25,7 +26,7 @@ public:
 		return m_tInfo;
 	}
 
-	void SetCharacterInfo(int iAtMin, int iAtMax, float fCritical, int iArmor, int iHP, int iMP, int iLevel, int iExp);
+	void SetCharacterInfo(int iAtMin, int iAtMax, float fCritical, int iArmor, int iHP, int iMPUse, int iMP, int iLevel, int iExp);
 
 	virtual int GetDamage() {
 		// iAttackMin ~ iAttackMax 사이의 랜덤한 값 리턴

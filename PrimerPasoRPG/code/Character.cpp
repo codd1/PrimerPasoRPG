@@ -18,12 +18,12 @@ CCharacter::~CCharacter()
 
 void CCharacter::SetAttackMin(int iAttackMin)
 {
-	m_tInfo.iAttackMin;
+	m_tInfo.iAttackMin = iAttackMin;
 }
 
 void CCharacter::SetAttackMax(int iAttackMax)
 {
-	m_tInfo.iAttackMax;
+	m_tInfo.iAttackMax = iAttackMax;
 }
 
 void CCharacter::SetCritical(float fCritical)
@@ -33,30 +33,35 @@ void CCharacter::SetCritical(float fCritical)
 
 void CCharacter::SetArmor(int iArmor)
 {
-	m_tInfo.iArmor;
+	m_tInfo.iArmor = iArmor;
 }
 
 void CCharacter::SetHP(int iHP)
 {
-	m_tInfo.iHP;
+	m_tInfo.iHP = iHP;
+}
+
+void CCharacter::SetMPUse(int iMPUse)
+{
+	m_tInfo.iMPUse = iMPUse;
 }
 
 void CCharacter::SetMP(int iMP)
 {
-	m_tInfo.iMP;
+	m_tInfo.iMP = iMP;
 }
 
 void CCharacter::SetLevel(int iLevel)
 {
-	m_tInfo.iLevel;
+	m_tInfo.iLevel = iLevel;
 }
 
 void CCharacter::SetExp(int iExp)
 {
-	m_tInfo.iExp;
+	m_tInfo.iExp = iExp;
 }
 
-void CCharacter::SetCharacterInfo(int iAtMin, int iAtMax, float fCritical, int iArmor, int iHP, int iMP, int iLevel, int iExp)
+void CCharacter::SetCharacterInfo(int iAtMin, int iAtMax, float fCritical, int iArmor, int iHP, int iMPUse, int iMP, int iLevel, int iExp)
 {
 	m_tInfo.iAttackMin = iAtMin;
 	m_tInfo.iAttackMax = iAtMax;
@@ -64,12 +69,12 @@ void CCharacter::SetCharacterInfo(int iAtMin, int iAtMax, float fCritical, int i
 	m_tInfo.iArmor = iArmor;
 	m_tInfo.iHP = iHP;
 	m_tInfo.iHPMax = iHP;
+	m_tInfo.iMPUse = iMPUse;
 	m_tInfo.iMP = iMP;
 	m_tInfo.iMPMax = iMP;
 	m_tInfo.iLevel = iLevel;
 	m_tInfo.iExp = iExp;
 }
-
 
 bool CCharacter::Damage(int iDamage)
 {
