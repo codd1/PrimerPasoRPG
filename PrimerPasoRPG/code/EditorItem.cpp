@@ -1,6 +1,7 @@
 #include "EditorItem.h"
 #include "ItemWeapon.h"
 #include "ItemArmor.h"
+#include "ItemPosion.h"
 #include "FileStream.h"
 
 DEFINITION_SINGLE(CEditorItem)
@@ -40,6 +41,17 @@ enum MODIFY_ARMOR_MENU {
 	MAM_BACK
 };
 
+enum MODIFY_POSION_MENU {
+	MPM_NONE,
+	MPM_NAME,
+	MPM_ITEMTYPE,
+	MPM_POSION,
+	MPM_PRICE,
+	MPM_SELL,
+	MPM_DESC,
+	MPM_BACK
+};
+
 CEditorItem::CEditorItem()
 {
 }
@@ -48,6 +60,7 @@ CEditorItem::~CEditorItem()
 {
 	Safe_Delete_VecList(m_vecWeapon);
 	Safe_Delete_VecList(m_vecArmor);
+	Safe_Delete_VecList(m_vecPosion);
 }
 
 bool CEditorItem::Init()
@@ -113,6 +126,7 @@ void CEditorItem::InsertItem()
 	while (iItemType <= 0 || iItemType > IT_MAX) {
 		cout << "1. 무기" << endl;
 		cout << "2. 방어구" << endl;
+		cout << "3. 물약" << endl;
 		cout << "아이템 종류를 선택하세요: ";
 		iItemType = Input<int>();
 	}
@@ -123,6 +137,9 @@ void CEditorItem::InsertItem()
 		break;
 	case IT_ARMOR:
 		pItem = new CItemArmor;
+		break;
+	case IT_POSION:
+		pItem = new CItemPosion;
 		break;
 	}
 
@@ -170,6 +187,14 @@ void CEditorItem::InsertItem()
 		((CItemArmor*)pItem)->SetArmor(iArmor);
 
 		break;
+	case IT_POSION:
+		int iPosion;
+		cout << "회복량: ";
+		iPosion = Input<int>();
+
+		((CItemPosion*)pItem)->SetPosion(iPosion);
+
+		break;
 	}
 
 	char strDesc[256] = {};
@@ -187,6 +212,9 @@ void CEditorItem::InsertItem()
 	case IT_ARMOR:
 		m_vecArmor.push_back(pItem);
 		break;
+	case IT_POSION:
+		m_vecPosion.push_back(pItem);
+		break;
 	}
 }
 
@@ -200,6 +228,7 @@ void CEditorItem::ModifyItem()
 	while (iItemType <= 0 || iItemType > IT_MAX) {
 		cout << "1. 무기" << endl;
 		cout << "2. 방어구" << endl;
+		cout << "3. 물약" << endl;
 		cout << "아이템 종류를 선택하세요: ";
 		iItemType = Input<int>();
 	}
@@ -210,6 +239,9 @@ void CEditorItem::ModifyItem()
 	case IT_ARMOR:
 		pItem = new CItemArmor;
 		break;
+	case IT_POSION:
+		pItem = new CItemPosion;
+		break;
 	}
 
 	if (!pItem->Init()) {
@@ -219,7 +251,7 @@ void CEditorItem::ModifyItem()
 
 	int iChooseItem;
 	char strName[256] = {};
-	int iAttackMin, iAttackMax, iArmor;
+	int iAttackMin, iAttackMax, iArmor, iPosion;
 	float fCritical;
 	int iPrice, iSell;
 	char strDesc[512] = {};
@@ -385,6 +417,78 @@ void CEditorItem::ModifyItem()
 				return;
 			}
 		}
+	case IT_POSION:
+		OutputPosionList();
+
+		while (true) {
+			cout << "수정하려는 아이템을 선택하세요: ";
+			iChooseItem = Input<int>();
+
+			// 뒤로가기 선택
+			if (iChooseItem == m_vecPosion.size() + 1) {
+				return;
+			}
+			else if (iChooseItem >= 1 && iChooseItem <= m_vecPosion.size()) {
+				break;
+			}
+		}
+
+		while (true) {
+			cout << endl << endl;
+			cout << "1. 이름\t\t2. 종류" << endl;
+			cout << "3. 회복량" << endl;
+			cout << "4. 구매가\t5. 판매가\t6. 아이템 설명" << endl;
+			cout << "7. 뒤로가기" << endl;
+			cout << "수정할 항목을 입력하세요: ";
+
+			int iModifyMenu = Input<int>();
+
+			if (iModifyMenu <= MAM_NONE || iModifyMenu > MAM_BACK) {
+				continue;
+			}
+
+			switch (iModifyMenu) {
+			case MPM_NAME:
+				cout << "이름: ";
+
+				cin.ignore(1024, '\n');
+				cin.getline(strName, 255);
+
+				m_vecPosion[iChooseItem - 1]->SetName(strName);
+				break;
+			case MPM_ITEMTYPE:
+				/*m_vecPosion[iChooseItem - 1]->SetItemType(IT_WEAPON);
+				cout << "아이템 종류가 '무기'로 변경되었습니다. (아이템 정보는 수정 불가)" << endl;
+				m_vecWeapon.push_back(m_vecPosion[iChooseItem - 1]);
+				m_vecPosion.erase(m_vecPosion.begin() + (iChooseItem - 1));*/
+				cout << "설계(기획) 필요" << endl;
+				break;
+			case MPM_POSION:
+				cout << "회복량: ";
+				cin >> iPosion;
+				((CItemPosion*)m_vecPosion[iChooseItem - 1])->SetPosion(iPosion);
+				break;
+			case MPM_PRICE:
+				cout << "구매가: ";
+				cin >> iPrice;
+				m_vecPosion[iChooseItem - 1]->SetPrice(iPrice);
+				break;
+			case MPM_SELL:
+				cout << "판매가: ";
+				cin >> iSell;
+				m_vecPosion[iChooseItem - 1]->SetSell(iSell);
+				break;
+			case MPM_DESC:
+				cout << "아이템 설명: ";
+				cin.ignore(1024, '\n');
+				cin.getline(strDesc, 255);
+				m_vecPosion[iChooseItem - 1]->SetDesc(strDesc);
+				break;
+			case MPM_BACK:
+				return;
+			}
+		}
+		break;
 	}
 }
 
@@ -396,6 +500,7 @@ void CEditorItem::DeleteItem()
 	while (iItemType <= 0 || iItemType > IT_MAX) {
 		cout << "1. 무기" << endl;
 		cout << "2. 방어구" << endl;
+		cout << "3. 물약" << endl;
 		cout << "아이템 종류를 선택하세요: ";
 		iItemType = Input<int>();
 	}
@@ -433,6 +538,22 @@ void CEditorItem::DeleteItem()
 		cout << endl << m_vecArmor[iChooseItem - 1]->GetName() << " 아이템이 삭제되었습니다." << endl;
 		m_vecArmor.erase(m_vecArmor.begin() + (iChooseItem - 1));
 		break;
+	case IT_POSION:
+		OutputPosionList();
+		while (iChooseItem <= 0 || iChooseItem > m_vecPosion.size() + 1) {
+			cout << m_vecPosion.size() + 1 << ". 뒤로가기" << endl;
+			cout << "삭제할 아이템을 선택하세요: ";
+			iChooseItem = Input<int>();
+		}
+
+		if (iChooseItem == m_vecPosion.size() + 1) {
+			return;
+		}
+
+		cout << endl << m_vecPosion[iChooseItem - 1]->GetName() << " 아이템이 삭제되었습니다." << endl;
+		m_vecPosion.erase(m_vecPosion.begin() + (iChooseItem - 1));
+
+		break;
 	}
 
 	system("pause");
@@ -458,12 +579,23 @@ void CEditorItem::OutputArmorList()
 	}
 }
 
+void CEditorItem::OutputPosionList()
+{
+	cout << "================== 물약 상점 ==================" << endl;
+	for (size_t i = 0; i < m_vecPosion.size(); i++) {
+		cout << i + 1 << ". ";
+		m_vecPosion[i]->Render();
+		cout << endl;
+	}
+}
+
 void CEditorItem::OutputItemList()
 {
 	system("cls");
 
 	OutputWeaponList();
 	OutputArmorList();
+	OutputPosionList();
 
 	system("pause");
 }
@@ -496,26 +628,17 @@ void CEditorItem::SaveItem()
 		file.Close();
 	}
 
-	/*CFileStream file("StoreWeapon.swp", "wb");
+	// 물약 상점 저장
+	if (file.Open("StorePosion.sps", "wb")) {
+		size_t iCount = m_vecPosion.size();
 
-	size_t iCount = m_vecWeapon.size();
+		file.Write(&iCount, 4);
 
-	file.Write(&iCount, 4);
-
-	for (size_t i = 0; i < iCount; i++) {
-		m_vecWeapon[i]->Save(&file);
+		for (size_t i = 0; i < iCount; i++) {
+			m_vecPosion[i]->Save(&file);
+		}
+		file.Close();
 	}
-
-
-	CFileStream file2("StoreArmor.sar", "wb");
-
-	iCount = m_vecArmor.size();
-
-	file2.Write(&iCount, 4);
-
-	for (size_t i = 0; i < iCount; i++) {
-		m_vecArmor[i]->Save(&file2);
-	}*/
 
 	cout << endl << "파일 저장 완료" << endl;
 	system("pause");
@@ -525,6 +648,7 @@ void CEditorItem::LoadItem()
 {
 	Safe_Delete_VecList(m_vecWeapon);
 	Safe_Delete_VecList(m_vecArmor);
+	Safe_Delete_VecList(m_vecPosion);
 
 	CFileStream file("StoreWeapon.swp", "rb");
 
@@ -546,47 +670,6 @@ void CEditorItem::LoadItem()
 		file.Close();
 	}
 
-	//// 무기 상점 읽어오기
-	//CFileStream file("StoreWeapon.swp", "rb");
-
-	//size_t iWeaponCount = 0;
-
-	//file.Read(&iWeaponCount, 4);
-
-	//for (size_t i = 0; i < iWeaponCount; i++) {
-
-	//	CItem* pItem = new CItemWeapon;
-
-	//	if (!pItem->Init()) {
-	//		SAFE_DELETE(pItem);
-	//		return;
-	//	}
-	//	pItem->Load(&file);
-
-	//	m_vecWeapon.push_back(pItem);
-	//}
-
-	//CFileStream file2("StoreArmor.sar", "rb");
-
-	//// 방어구 상점 읽어오기
-	//size_t iArmorCount = 0;
-
-	//file2.Read(&iArmorCount, 4);
-
-	//for (size_t i = 0; i < iArmorCount; i++) {
-
-	//	CItem* pItem = new CItemArmor;
-
-	//	if (!pItem->Init()) {
-	//		SAFE_DELETE(pItem);
-	//		return;
-	//	}
-	//	pItem->Load(&file2);
-
-	//	m_vecArmor.push_back(pItem);
-	//}
-
-
 	// 방어구 상점 읽어오기
 	if (file.Open("StoreArmor.sar", "rb")) {
 		size_t iCount = 0;
@@ -604,6 +687,28 @@ void CEditorItem::LoadItem()
 			pItem->Load(&file);
 
 			m_vecArmor.push_back(pItem);
+		}
+
+		file.Close();
+	}
+
+	// 물약 상점 읽어오기
+	if (file.Open("StorePosion.sps", "rb")) {
+		size_t iCount = 0;
+
+		file.Read(&iCount, 4);
+
+		for (size_t i = 0; i < iCount; i++) {
+
+			CItem* pItem = new CItemPosion;
+
+			if (!pItem->Init()) {
+				SAFE_DELETE(pItem);
+				return;
+			}
+			pItem->Load(&file);
+
+			m_vecPosion.push_back(pItem);
 		}
 
 		file.Close();

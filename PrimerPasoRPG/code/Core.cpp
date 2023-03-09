@@ -123,8 +123,8 @@ void CCore::SetLevelUpInfo()
 {
 	// 레벨업에 필요한 정보 상승 구조체를 만들어준다.
 	m_tLevelUpInfo[JOB_KNIGHT - 1] = CreateLevelUpInfo(5, 10, 15, 100, 10);
-	m_tLevelUpInfo[JOB_ARCHER - 1] = CreateLevelUpInfo(10, 15, 10, 80, 30);
-	m_tLevelUpInfo[JOB_WIZARD - 1] = CreateLevelUpInfo(15, 20, 5, 50, 50);
+	m_tLevelUpInfo[JOB_ARCHER - 1] = CreateLevelUpInfo(10, 15, 10, 80, 20);
+	m_tLevelUpInfo[JOB_WIZARD - 1] = CreateLevelUpInfo(15, 20, 5, 50, 30);
 }
 
 LEVELUPINFO CCore::CreateLevelUpInfo(int iAttackMin, int iAttackMax, int iArmor, int iHP, int iMP)

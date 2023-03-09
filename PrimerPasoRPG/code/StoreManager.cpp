@@ -1,6 +1,7 @@
 #include "StoreManager.h"
 #include "StoreWeapon.h"
 #include "StoreArmor.h"
+#include "StorePosion.h"
 
 DEFINITION_SINGLE(CStoreManager)
 
@@ -19,6 +20,9 @@ bool CStoreManager::Init()
 
 	// 방어구상점 생성
 	pStore = CreateStore(STR_ARMOR);
+
+	// 물약상점 생성
+	pStore = CreateStore(STR_POSION);
 
 	return true;
 }
@@ -50,6 +54,9 @@ CStore* CStoreManager::CreateStore(STORE_TYPE eType)
 	case STR_ARMOR:
 		pStore = new CStoreArmor;
 		break;
+	case STR_POSION:
+		pStore = new CStorePosion;
+		break;
 	}
 
 	if (!pStore->Init()) {
@@ -67,7 +74,8 @@ int CStoreManager::OutputMenu()
 	system("cls");
 	cout << "1. 무기 상점" << endl;
 	cout << "2. 방어구 상점" << endl;
-	cout << "3. 뒤로가기" << endl;
+	cout << "3. 물약 상점" << endl;
+	cout << "4. 뒤로가기" << endl;
 	cout << "상점을 선택하세요: ";
 	int iStore = Input<int>();
 

@@ -114,6 +114,12 @@
     <ClCompile Include="code\EditorItem.cpp">
       <Filter>06. Editor</Filter>
     </ClCompile>
+    <ClCompile Include="code\StorePosion.cpp">
+      <Filter>04. Store</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ItemPosion.cpp">
+      <Filter>03. Object\02. Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\Core.h">
@@ -193,6 +199,12 @@
     </ClInclude>
     <ClInclude Include="code\EditorItem.h">
       <Filter>06. Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="code\StorePosion.h">
+      <Filter>04. Store</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ItemPosion.h">
+      <Filter>03. Object\02. Item</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\Character.cpp" />
+    <ClCompile Include="code\ItemPosion.cpp" />
     <ClCompile Include="code\Core.cpp" />
     <ClCompile Include="code\EditorCore.cpp" />
     <ClCompile Include="code\EditorItem.cpp" />
@@ -42,10 +43,12 @@
     <ClCompile Include="code\Store.cpp" />
     <ClCompile Include="code\StoreArmor.cpp" />
     <ClCompile Include="code\StoreManager.cpp" />
+    <ClCompile Include="code\StorePosion.cpp" />
     <ClCompile Include="code\StoreWeapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\Character.h" />
+    <ClInclude Include="code\ItemPosion.h" />
     <ClInclude Include="code\Core.h" />
     <ClInclude Include="code\defines.h" />
     <ClInclude Include="code\EditorCore.h" />
@@ -69,6 +72,7 @@
     <ClInclude Include="code\Store.h" />
     <ClInclude Include="code\StoreArmor.h" />
     <ClInclude Include="code\StoreManager.h" />
+    <ClInclude Include="code\StorePosion.h" />
     <ClInclude Include="code\StoreWeapon.h" />
     <ClInclude Include="code\value.h" />
   </ItemGroup>

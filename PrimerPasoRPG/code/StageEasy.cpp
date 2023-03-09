@@ -60,7 +60,7 @@ void CStageEasy::Run()
 					// 직업에 맞춰 능력치 상승
 					pPlayer->AddLevelUpStatus(GET_SINGLE(CCore)->GetLevelUpInfo(pPlayer->GetJob()));
 
-					cout << "Level Up!" << endl << endl;
+					cout << "[시스템] Level Up!" << endl << endl;
 				}
 
 				// 몬스터를 삭제하고 다시 복사해서 생성해준다. (몬스터 리젠)

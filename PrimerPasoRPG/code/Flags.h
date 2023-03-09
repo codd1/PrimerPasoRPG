@@ -20,6 +20,7 @@ enum OBJECT_TYPE {
 enum ITEM_TYPE {
 	IT_WEAPON,
 	IT_ARMOR,
+	IT_POSION,
 	IT_MAX
 };
 

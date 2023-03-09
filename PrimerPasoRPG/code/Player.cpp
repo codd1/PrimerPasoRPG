@@ -150,11 +150,11 @@ bool CPlayer::Init()
 		break;
 	case JOB_ARCHER:
 		m_strJobName = "±Ã¼ö";
-		SetCharacterInfo(10, 15, 5.0f, 10, 400, 10, 200, 1, 0);
+		SetCharacterInfo(10, 15, 5.0f, 10, 400, 10, 125, 1, 0);
 		break;
 	case JOB_WIZARD:
 		m_strJobName = "¸¶¹ý»ç";
-		SetCharacterInfo(15, 20, 5.0f, 5, 300, 15, 300, 1, 0);
+		SetCharacterInfo(15, 20, 5.0f, 5, 300, 15, 150, 1, 0);
 		break;
 	}
 
