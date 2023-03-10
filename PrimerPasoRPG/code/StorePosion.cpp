@@ -15,6 +15,30 @@ CStorePosion::~CStorePosion()
 
 bool CStorePosion::Init()
 {
+    CFileStream file("StorePosion.sps", "rb");
+
+    // 방어구 상점 읽어오기
+    if (file.GetOpen()) {
+        size_t iCount = 0;
+
+        file.Read(&iCount, 4);
+
+        for (size_t i = 0; i < iCount; i++) {
+
+            CItem* pItem = new CItemPosion;
+
+            if (!pItem->Init()) {
+                SAFE_DELETE(pItem);
+                return false;
+            }
+            pItem->Load(&file);
+
+            m_vecItem.push_back(pItem);
+        }
+
+        file.Close();
+    }
+
     return true;
 }
 

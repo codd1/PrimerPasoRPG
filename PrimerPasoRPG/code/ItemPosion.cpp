@@ -1,12 +1,15 @@
 #include "ItemPosion.h"
 #include "FileStream.h"
 
-CItemPosion::CItemPosion()
+CItemPosion::CItemPosion() :
+	m_iNumPosion(0)
 {
 }
 
-CItemPosion::CItemPosion(const CItemPosion& item)
+CItemPosion::CItemPosion(const CItemPosion& item) :
+	CItem(item)
 {
+	m_iPosion = item.m_iPosion;
 }
 
 CItemPosion::~CItemPosion()
@@ -25,7 +28,7 @@ bool CItemPosion::Init()
 
 void CItemPosion::Render()
 {
-	cout << "이름: " << m_strName << "\t종류: " << m_tInfo.strTypeName << endl;
+	cout << "이름: " << m_strName << "\t종류: " << m_tInfo.strTypeName << "\tX" << m_iNumPosion << endl;
 	cout << "회복량: " << m_iPosion << endl;
 	cout << "구매가: " << m_tInfo.iPrice << "\t판매가: " << m_tInfo.iSell << endl;
 	cout << "아이템 설명: " << m_tInfo.strDesc << endl;

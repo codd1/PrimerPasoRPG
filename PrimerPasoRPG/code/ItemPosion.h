@@ -9,14 +9,20 @@ protected:
 	virtual ~CItemPosion();
 
 private:
+	friend class CStore;
 	friend class CEditorItem;
+	friend class CStorePosion;
 
 private:
 	int m_iPosion;
+	int m_iNumPosion;
 
 public:
-	int GetRecovery() const {
+	int GetPosion() const {
 		return m_iPosion;
+	}
+	int GetNumPosion() const {
+		return m_iNumPosion;
 	}
 
 public:

@@ -23,6 +23,11 @@ public:
 	bool init();
 	void Additem(class CItem* pItem);
 	void Run();
+	
+public:
+	int OutputTab();
+	void EquipItemTab();
+	void ConsumableItemTab();
 
 	DECLARE_SINGLE(CInventory)
 };

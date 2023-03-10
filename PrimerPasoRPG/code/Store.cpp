@@ -1,6 +1,7 @@
 #include "Store.h"
 #include "ItemWeapon.h"
 #include "ItemArmor.h"
+#include "ItemPosion.h"
 
 CStore::CStore()
 {
@@ -23,6 +24,9 @@ CItem* CStore::CreateItem(const char* strName, ITEM_TYPE eType, int iPrice, int 
 		break;
 	case IT_ARMOR:
 		pItem = new CItemArmor;
+		break;
+	case IT_POSION:
+		pItem = new CItemPosion;
 		break;
 	}
 
