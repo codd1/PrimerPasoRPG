@@ -52,6 +52,12 @@ enum MODIFY_POSION_MENU {
 	MPM_BACK
 };
 
+enum POSION_TYPE {
+	PT_NONE,
+	PT_HP,
+	PT_MP
+};
+
 CEditorItem::CEditorItem()
 {
 }
@@ -123,6 +129,7 @@ void CEditorItem::InsertItem()
 	system("cls");
 	cout << "=================== 아이템 추가 ===================" << endl;
 	int iItemType = 0;
+	int iPosionType = 0;
 	while (iItemType <= 0 || iItemType > IT_MAX) {
 		cout << "1. 무기" << endl;
 		cout << "2. 방어구" << endl;
@@ -138,8 +145,23 @@ void CEditorItem::InsertItem()
 	case IT_ARMOR:
 		pItem = new CItemArmor;
 		break;
-	case IT_POSION:
+	case IT_HP_POSION:
+	case IT_MP_POSION:
 		pItem = new CItemPosion;
+		cout << endl;
+		while (iPosionType <= PT_NONE || iPosionType > PT_MP + 1) {
+			cout << "1. 체력 물약 / 2. 마나 물약" << endl;
+			cout << "물약 타입을 선택하세요: ";
+			iPosionType = Input<int>();
+		}
+		switch (iPosionType) {
+		case PT_HP:
+			iPosionType = IT_HP_POSION;
+			break;
+		case PT_MP:
+			iPosionType = IT_MP_POSION;
+			break;
+		}
 		break;
 	}
 
@@ -187,10 +209,15 @@ void CEditorItem::InsertItem()
 		((CItemArmor*)pItem)->SetArmor(iArmor);
 
 		break;
-	case IT_POSION:
+	case IT_HP_POSION:
+	case IT_MP_POSION:
 		int iPosion;
 		cout << "회복량: ";
 		iPosion = Input<int>();
+
+		// 포션 타입 저장 (체력/마나 물약)
+		// SetItemInfo에서 iItemType -1을 하기 때문에 1을 더해준다.
+		iItemType = iPosionType + 1;
 
 		((CItemPosion*)pItem)->SetPosion(iPosion);
 
@@ -212,7 +239,8 @@ void CEditorItem::InsertItem()
 	case IT_ARMOR:
 		m_vecArmor.push_back(pItem);
 		break;
-	case IT_POSION:
+	case IT_HP_POSION:
+	case IT_MP_POSION:
 		m_vecPosion.push_back(pItem);
 		break;
 	}
@@ -239,7 +267,8 @@ void CEditorItem::ModifyItem()
 	case IT_ARMOR:
 		pItem = new CItemArmor;
 		break;
-	case IT_POSION:
+	case IT_HP_POSION:
+	case IT_MP_POSION:
 		pItem = new CItemPosion;
 		break;
 	}
@@ -417,7 +446,8 @@ void CEditorItem::ModifyItem()
 				return;
 			}
 		}
-	case IT_POSION:
+	case IT_HP_POSION:
+	case IT_MP_POSION:
 		OutputPosionList();
 
 		while (true) {
@@ -538,7 +568,8 @@ void CEditorItem::DeleteItem()
 		cout << endl << m_vecArmor[iChooseItem - 1]->GetName() << " 아이템이 삭제되었습니다." << endl;
 		m_vecArmor.erase(m_vecArmor.begin() + (iChooseItem - 1));
 		break;
-	case IT_POSION:
+	case IT_HP_POSION:
+	case IT_MP_POSION:
 		OutputPosionList();
 		while (iChooseItem <= 0 || iChooseItem > m_vecPosion.size() + 1) {
 			cout << m_vecPosion.size() + 1 << ". 뒤로가기" << endl;

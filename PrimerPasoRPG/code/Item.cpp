@@ -26,8 +26,11 @@ void CItem::SetItemInfo(ITEM_TYPE eType, int iPrice, int iSell, const char* pDes
 	case IT_ARMOR:
 		m_tInfo.strTypeName = "방어구";
 		break;
-	case IT_POSION:
-		m_tInfo.strTypeName = "물약";
+	case IT_HP_POSION:
+		m_tInfo.strTypeName = "체력물약";
+		break;
+	case IT_MP_POSION:
+		m_tInfo.strTypeName = "마나물약";
 		break;
 	}
 
@@ -47,8 +50,11 @@ void CItem::SetItemType(ITEM_TYPE eType)
 	case IT_ARMOR:
 		m_tInfo.strTypeName = "방어구";
 		break;
-	case IT_POSION:
-		m_tInfo.strTypeName = "물약";
+	case IT_HP_POSION:
+		m_tInfo.strTypeName = "체력물약";
+		break;
+	case IT_MP_POSION:
+		m_tInfo.strTypeName = "마나물약";
 		break;
 	}
 }

@@ -1,10 +1,7 @@
 ﻿  EditorItem.cpp
-  ItemPosion.cpp
-  Store.cpp
-  StorePosion.cpp
   코드를 생성하고 있습니다.
-  10 of 818 functions ( 1.2%) were compiled, the rest were copied from previous compilation.
+  9 of 822 functions ( 1.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    46 functions had inline decision re-evaluated but remain unchanged
+    1 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
   PrimerPasoRPG.vcxproj -> C:\Users\CYHONG\source\repos\PrimerPasoRPG\x64\Release\PrimerPasoRPG.exe

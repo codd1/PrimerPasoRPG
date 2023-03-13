@@ -21,6 +21,7 @@ public:
 	void SetMP(int iMP);
 	void SetLevel(int iLevel);
 	void SetExp(int iExp);
+	
 public:
 	CHARACTERINFO GetCharacterInfo() const {
 		return m_tInfo;

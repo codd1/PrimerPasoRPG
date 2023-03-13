@@ -25,9 +25,9 @@ public:
 	void Run();
 	
 public:
-	int OutputTab();
-	void EquipItemTab();
-	void ConsumableItemTab();
+	void EquipItem(class CPlayer* pPlayer, int iItem);
+	void HPPosionItem(class CPlayer* pPlayer, int iItem);
+	void MPPosionItem(class CPlayer* pPlayer, int iItem);
 
 	DECLARE_SINGLE(CInventory)
 };

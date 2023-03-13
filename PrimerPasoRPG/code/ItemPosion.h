@@ -12,21 +12,23 @@ private:
 	friend class CStore;
 	friend class CEditorItem;
 	friend class CStorePosion;
+	//friend class CInventory;
 
 private:
-	int m_iPosion;
-	int m_iNumPosion;
+	int m_iRecoveryValue;	// 물약 회복량
+	//int m_iNumPosion;		// 물약 갯수
 
 public:
-	int GetPosion() const {
-		return m_iPosion;
+	int GetRecoveryValue() const {
+		return m_iRecoveryValue;
 	}
-	int GetNumPosion() const {
+	/*int GetNumPosion() const {
 		return m_iNumPosion;
-	}
+	}*/
 
 public:
-	void SetPosion(int iPosion);
+	void SetPosion(int iRecoveryValue);
+	//void SetNumPosion(int iNumPosion);
 
 public:
 	virtual bool Init();

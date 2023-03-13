@@ -1,25 +1,30 @@
 #include "ItemPosion.h"
 #include "FileStream.h"
 
-CItemPosion::CItemPosion() :
-	m_iNumPosion(0)
+CItemPosion::CItemPosion()
+	//m_iNumPosion(0)
 {
 }
 
 CItemPosion::CItemPosion(const CItemPosion& item) :
 	CItem(item)
 {
-	m_iPosion = item.m_iPosion;
+	m_iRecoveryValue = item.m_iRecoveryValue;
 }
 
 CItemPosion::~CItemPosion()
 {
 }
 
-void CItemPosion::SetPosion(int iPosion)
+void CItemPosion::SetPosion(int iRecoveryValue)
 {
-	m_iPosion = iPosion;
+	m_iRecoveryValue = iRecoveryValue;
 }
+
+//void CItemPosion::SetNumPosion(int iNumPosion)
+//{
+//	m_iNumPosion = iNumPosion;
+//}
 
 bool CItemPosion::Init()
 {
@@ -28,8 +33,8 @@ bool CItemPosion::Init()
 
 void CItemPosion::Render()
 {
-	cout << "이름: " << m_strName << "\t종류: " << m_tInfo.strTypeName << "\tX" << m_iNumPosion << endl;
-	cout << "회복량: " << m_iPosion << endl;
+	cout << "이름: " << m_strName << "\t종류: " << m_tInfo.strTypeName << endl;
+	cout << "회복량: " << m_iRecoveryValue << endl;
 	cout << "구매가: " << m_tInfo.iPrice << "\t판매가: " << m_tInfo.iSell << endl;
 	cout << "아이템 설명: " << m_tInfo.strDesc << endl;
 }
@@ -43,12 +48,12 @@ void CItemPosion::Save(CFileStream* pFile)
 {
 	CItem::Save(pFile);
 
-	pFile->Write(&m_iPosion, 4);
+	pFile->Write(&m_iRecoveryValue, 4);
 }
 
 void CItemPosion::Load(CFileStream* pFile)
 {
 	CItem::Load(pFile);
 
-	pFile->Read(&m_iPosion, 4);
+	pFile->Read(&m_iRecoveryValue, 4);
 }

@@ -80,5 +80,9 @@ void CStorePosion::Run()
 
         // 구매 시 아이템 가격만큼 차감 (AddGold 함수를 이용해 -값을 넣어줌)
         pPlayer->AddGold(-pItem->GetItemInfo().iPrice);
+
+        // 구매 시 아이템 갯수 추가
+       /* CItemPosion* pPosion = (CItemPosion*)m_vecItem[iInput - 1]->Clone();
+        pPosion->SetNumPosion(pPosion->GetNumPosion() + 1);*/
     }
 }

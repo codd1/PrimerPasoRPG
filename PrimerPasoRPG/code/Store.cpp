@@ -25,7 +25,8 @@ CItem* CStore::CreateItem(const char* strName, ITEM_TYPE eType, int iPrice, int 
 	case IT_ARMOR:
 		pItem = new CItemArmor;
 		break;
-	case IT_POSION:
+	case IT_HP_POSION:
+	case IT_MP_POSION:
 		pItem = new CItemPosion;
 		break;
 	}

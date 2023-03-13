@@ -1,18 +1,19 @@
 #include "Inventory.h"
 #include "Item.h"
+#include "ItemPosion.h"
 #include "Player.h"
 #include "ObjectManager.h"
 
 DEFINITION_SINGLE(CInventory)
 
-enum INVENTORY_TAB_MENU {
-	ITM_NONE,
-	ITM_EQUIP,
-	ITEM_CONSUMABLE,	// 소모품
-	ITM_BACK
-};
+//enum INVENTORY_TAB_MENU {
+//	ITM_NONE,
+//	ITM_EQUIP,
+//	ITEM_CONSUMABLE,	// 소모품
+//	ITM_BACK
+//};
 
-CInventory::CInventory():
+CInventory::CInventory() :
 	m_iInvenMax(10)		// 기본 10개
 {
 }
@@ -44,21 +45,11 @@ void CInventory::Run()
 
 	while (true) {
 		system("cls");
-		cout << "==================== Inventory ====================" << endl;
+		cout << "==================== Player Information ====================" << endl;
 		pPlayer->Render();		// 플레이어 정보 출력
-		cout << endl;
+		cout << endl << endl;
 
-		switch (OutputTab()) {
-		case ITM_EQUIP:
-			EquipItemTab();
-			break;
-		case ITEM_CONSUMABLE:
-			ConsumableItemTab();
-			break;
-		case ITM_BACK:
-			return;
-		}
-
+		cout << "==================== Inventory ====================" << endl;
 		for (size_t i = 0; i < m_vecItem.size(); i++) {
 			cout << i + 1 << ". ";
 			m_vecItem[i]->Render();
@@ -75,30 +66,76 @@ void CInventory::Run()
 			return;
 		}
 
+		ITEM_TYPE eType = m_vecItem[iItem - 1]->GetItemInfo().eType;
 
+		switch (eType) {
+		case IT_WEAPON:
+		case IT_ARMOR:
+			EquipItem(pPlayer, iItem);
+			break;
+		case IT_HP_POSION:
+			HPPosionItem(pPlayer, iItem);
+			break;
+		case IT_MP_POSION:
+			MPPosionItem(pPlayer, iItem);
+			break;
+		}
 	}
 }
 
-int CInventory::OutputTab()
+void CInventory::EquipItem(CPlayer* pPlayer, int iItem)
 {
-	system("cls");
-	cout << "1. 장비" << endl;
-	cout << "2. 소모품" << endl;
-	cout << "3. 뒤로가기" << endl;
-	cout << "인벤토리 탭을 선택하세요: ";
-	int iMenu = Input<int>();
+	// iItem은 1번부터 선택하기 때문에 1을 빼줘야한다. (인덱스)
+	CItem* pEquip = pPlayer->Equip(m_vecItem[iItem - 1]);
 
-	if (iMenu <= ITM_NONE || iMenu > ITM_BACK) {
-		return ITM_NONE;
+	if (pEquip) {
+		// 장착 하고있던 아이템이 있을 경우,
+		// 받아와서 선택한 아이템을 장착하고 있던 아이템과 교체해준다.
+		m_vecItem[iItem - 1] = pEquip;
+	}
+	else {
+		// 장착 하고있던 아이템이 없을 경우 해당 아이템 칸을 지워준다.
+		// begin + 인덱스를 해줘서 장착한 아이템의 iterator를 구해준다.
+		vector<CItem*>::iterator iter = m_vecItem.begin() + (iItem - 1);
+
+		// iter를 지우면서 자동으로 한 칸씩 당겨준다.
+		m_vecItem.erase(iter);
+	}
+}
+
+void CInventory::HPPosionItem(CPlayer* pPlayer, int iItem)
+{
+	CItemPosion* pPosion = (CItemPosion*)m_vecItem[iItem - 1]->Clone();
+	int iRecoveryValue = pPosion->GetRecoveryValue();		// 회복수치
+
+	int iSetHP = pPlayer->GetCharacterInfo().iHP + iRecoveryValue;
+
+	// 최대HP를 초과할 경우 최대HP까지만 회복
+	if (iSetHP > pPlayer->GetCharacterInfo().iHPMax) {
+		pPlayer->SetHP(pPlayer->GetCharacterInfo().iHPMax);
+	}
+	else {
+		pPlayer->SetHP(iSetHP);
 	}
 
-	return iMenu;
+	vector<CItem*>::iterator iter = m_vecItem.begin() + (iItem - 1);
+	m_vecItem.erase(iter);
 }
 
-void CInventory::EquipItemTab()
+void CInventory::MPPosionItem(CPlayer* pPlayer, int iItem)
 {
-}
+	CItemPosion* pPosion = (CItemPosion*)m_vecItem[iItem - 1]->Clone();
+	int iRecoveryValue = pPosion->GetRecoveryValue();		// 회복수치
+	
+	int iSetMP = pPlayer->GetCharacterInfo().iMP + iRecoveryValue;
+	// 최대MP를 초과할 경우 최대MP까지만 회복
+	if (iSetMP > pPlayer->GetCharacterInfo().iMPMax) {
+		pPlayer->SetMP(pPlayer->GetCharacterInfo().iMPMax);
+	}
+	else {
+		pPlayer->SetMP(iSetMP);
+	}
 
-void CInventory::ConsumableItemTab()
-{
+	vector<CItem*>::iterator iter = m_vecItem.begin() + (iItem - 1);
+	m_vecItem.erase(iter);
 }
